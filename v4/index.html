@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="ro" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CARBOPURITY BLACK — Redefining Hydration | La Fântâna</title>
+  <meta name="description" content="Experimentează luxul apei pure. Carbopurity Black: apă filtrată, rece, fierbinte și carbogazificată într-un design minimalist.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+  
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/intersect@3.x.x/dist/cdn.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+  <style type="text/tailwindcss">
+    @theme {
+      --color-deep-black: #000000;
+      --color-carbon: #0A0A0A;
+      --color-onyx: #111111;
+      --color-platinum: #EDEDED;
+      --color-silver-gray: #A1A1A1;
+      --color-cyan-glow: #30C6FF;
+      --color-cyan-mute: #30C6FF26;
+      
+      --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    }
+  </style>
+
+  <style>
+    [x-cloak] { display: none !important; }
+    
+    .text-balance { text-wrap: balance; }
+    
+    .glass-nav {
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .hero-gradient {
+      background: radial-gradient(circle at center, rgba(48, 198, 255, 0.08) 0%, transparent 70%);
+    }
+
+    .image-zoom {
+      transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .image-zoom:hover {
+      transform: scale(1.05);
+    }
+
+    .stagger-1 { transition-delay: 100ms; }
+    .stagger-2 { transition-delay: 200ms; }
+    .stagger-3 { transition-delay: 300ms; }
+    
+    /* Smooth scroll behavior */
+    html { scroll-behavior: smooth; }
+    
+    /* Hide scrollbar but allow scrolling */
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  </style>
+</head>
+
+<body class="bg-deep-black text-platinum font-sans antialiased selection:bg-cyan-glow selection:text-black" x-data="v4_controller()">
+
+  <!-- NAVIGATION -->
+  <nav class="fixed top-0 left-0 right-0 z-[100] transition-all duration-500"
+       :class="scrolled ? 'glass-nav py-3' : 'bg-transparent py-6'">
+    <div class="max-w-[1400px] mx-auto px-6 flex items-center justify-between">
+      <a href="#hero" class="text-lg font-bold tracking-tight hover:opacity-70 transition-opacity">
+        LA FÂNTÂNA
+      </a>
+      
+      <div class="hidden md:flex items-center gap-8">
+        <template x-for="item in navItems" :key="item.id">
+          <a :href="'#' + item.id" 
+             class="text-[13px] font-medium tracking-wide uppercase text-silver-gray hover:text-white transition-colors"
+             x-text="item.label"></a>
+        </template>
+      </div>
+
+      <a href="#contact" 
+         class="bg-white text-black px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-cyan-glow transition-all active:scale-95">
+        Solicită Ofertă
+      </a>
+    </div>
+  </nav>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section id="hero" class="relative min-h-screen flex flex-col items-center justify-center overflow-hidden pt-20 px-6">
+      <div class="absolute inset-0 hero-gradient pointer-events-none"></div>
+      
+      <div class="relative z-10 text-center space-y-8 max-w-4xl">
+        <div x-intersect.once="$el.classList.add('active')" class="reveal">
+          <span class="inline-block px-4 py-1.5 rounded-full border border-white/10 text-[10px] font-bold uppercase tracking-[0.2em] mb-6">
+            Ediție Limitată • Carbopurity Black
+          </span>
+          <h1 class="text-6xl md:text-8xl font-black tracking-tighter leading-[0.9] uppercase italic italic-none">
+            Pure <br> <span class="text-cyan-glow">Sophistication</span>
+          </h1>
+        </div>
+
+        <p x-intersect.once="$el.classList.add('active')" class="reveal stagger-1 text-lg md:text-xl text-silver-gray max-w-2xl mx-auto text-balance leading-relaxed">
+          Uită tot ce știai despre dozatoarele de apă. Descoperă un obiect de design care redefinește standardele de hidratare în spațiul tău.
+        </p>
+
+        <div x-intersect.once="$el.classList.add('active')" class="reveal stagger-2 pt-8">
+          <img src="assets/images/hero/carbopurity-black-main.png" 
+               alt="Carbopurity Black" 
+               class="w-full max-w-[600px] mx-auto drop-shadow-[0_0_80px_rgba(48,198,255,0.15)] animate-float">
+        </div>
+      </div>
+
+      <!-- SCROLL INDICATOR -->
+      <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-30">
+        <span class="text-[10px] uppercase tracking-widest">Scroll</span>
+        <div class="w-px h-12 bg-gradient-to-b from-white to-transparent"></div>
+      </div>
+    </section>
+
+    <!-- TRINITY SECTION -->
+    <section id="features" class="py-32 bg-onyx">
+      <div class="max-w-[1400px] mx-auto px-6">
+        <div class="grid lg:grid-cols-3 gap-12 lg:gap-24">
+          <div x-intersect.once="$el.classList.add('active')" class="reveal space-y-6">
+            <h2 class="text-4xl font-bold tracking-tight">O singură atingere. <br>Trei experiențe.</h2>
+            <p class="text-silver-gray leading-relaxed">Tehnologia avansată de carbonatare și controlul precis al temperaturii îți oferă apa exact așa cum o dorești.</p>
+          </div>
+
+          <div class="lg:col-span-2 grid md:grid-cols-2 gap-8">
+            <div x-intersect.once="$el.classList.add('active')" class="reveal stagger-1 p-10 bg-deep-black rounded-[40px] border border-white/5 space-y-4 group">
+              <div class="text-cyan-glow mb-6">
+                <svg class="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+              </div>
+              <h3 class="text-2xl font-bold">Sparkling</h3>
+              <p class="text-silver-gray text-sm leading-relaxed">Bule fine, persistente, pentru o revigorare instantanee. Până la 600L de prospețime per butelie.</p>
+            </div>
+
+            <div x-intersect.once="$el.classList.add('active')" class="reveal stagger-2 p-10 bg-deep-black rounded-[40px] border border-white/5 space-y-4">
+              <div class="text-cyan-glow mb-6">
+                <svg class="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1"><path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+              </div>
+              <h3 class="text-2xl font-bold">Pure Cold</h3>
+              <p class="text-silver-gray text-sm leading-relaxed">Apă răcită la perfecție, filtrată prin tehnologia NSC pentru un gust pur, natural.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DESIGN & DETAIL SECTION -->
+    <section class="py-32 relative overflow-hidden">
+      <div class="max-w-[1400px] mx-auto px-6 grid lg:grid-cols-2 items-center gap-16">
+        <div x-intersect.once="$el.classList.add('active')" class="reveal order-2 lg:order-1">
+          <div class="rounded-[60px] overflow-hidden bg-onyx border border-white/5 aspect-[4/5] flex items-center justify-center p-12">
+            <img src="assets/images/gallery/carbopurity-black-angle.jpg" alt="Design Detaliu" class="w-full h-full object-contain image-zoom">
+          </div>
+        </div>
+        
+        <div class="order-1 lg:order-2 space-y-12">
+          <div x-intersect.once="$el.classList.add('active')" class="reveal">
+            <h2 class="text-5xl md:text-7xl font-bold tracking-tighter leading-none mb-8">Design <br>Fără Compromis</h2>
+            <p class="text-xl text-silver-gray leading-relaxed max-w-xl">Fiecare linie a fost gândită pentru a emana eleganță. Finisajul negru mat și interfața intuitivă fac din Carbopurity Black punctul central al oricărei bucătării moderne.</p>
+          </div>
+
+          <div class="grid gap-8">
+            <div x-intersect.once="$el.classList.add('active')" class="reveal stagger-1 flex gap-6 items-start">
+              <div class="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center flex-shrink-0 text-cyan-glow font-bold">01</div>
+              <div>
+                <h4 class="font-bold mb-2">Compact & Puternic</h4>
+                <p class="text-silver-gray text-sm leading-relaxed">Doar 23 cm lățime. Ocupă un spațiu minim pe blat, oferind o performanță maximă.</p>
+              </div>
+            </div>
+            <div x-intersect.once="$el.classList.add('active')" class="reveal stagger-2 flex gap-6 items-start">
+              <div class="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center flex-shrink-0 text-cyan-glow font-bold">02</div>
+              <div>
+                <h4 class="font-bold mb-2">Sterilizare UV</h4>
+                <p class="text-silver-gray text-sm leading-relaxed">Protecție microbiologică activă direct la punctul de servire. Siguranță deplină.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BENTO GRID FEATURES -->
+    <section id="specs" class="py-32 bg-deep-black">
+      <div class="max-w-[1400px] mx-auto px-6">
+        <div class="grid md:grid-cols-12 grid-rows-2 gap-6 h-auto lg:h-[800px]">
+          
+          <!-- Large Promo -->
+          <div x-intersect.once="$el.classList.add('active')" class="reveal md:col-span-7 row-span-2 bg-onyx rounded-[40px] border border-white/5 p-12 flex flex-col justify-between relative overflow-hidden group">
+            <div class="relative z-10">
+              <h3 class="text-4xl font-bold mb-6">Performanță <br>Fără Efort</h3>
+              <p class="text-silver-gray max-w-sm leading-relaxed">Capacitatea de filtrare de 5.600 litri asigură apă pură pentru întreaga familie, timp de un an întreg.</p>
+            </div>
+            <img src="assets/images/gallery/carbopurity-black-context.jpg" alt="Context" class="absolute inset-0 w-full h-full object-cover opacity-20 group-hover:opacity-40 transition-opacity duration-1000">
+            <div class="relative z-10 mt-auto flex items-baseline gap-2">
+              <span class="text-7xl font-black text-cyan-glow">5600</span>
+              <span class="text-xl font-bold text-silver-gray uppercase tracking-widest">Litri</span>
+            </div>
+          </div>
+
+          <!-- Feature Small -->
+          <div x-intersect.once="$el.classList.add('active')" class="reveal stagger-1 md:col-span-5 bg-[#1a1a1a] rounded-[40px] border border-white/5 p-10 flex flex-col justify-center">
+            <h4 class="text-2xl font-bold mb-4 italic">Filtrare NSC</h4>
+            <p class="text-silver-gray text-sm leading-relaxed">Tehnologie multi-strat cu carbon activ și nano-argint. Gustul apei de izvor, la tine acasă.</p>
+          </div>
+
+          <!-- Feature Small -->
+          <div x-intersect.once="$el.classList.add('active')" class="reveal stagger-2 md:col-span-5 bg-cyan-glow rounded-[40px] p-10 flex flex-col justify-center text-black">
+            <h4 class="text-2xl font-bold mb-4">Waterblock</h4>
+            <p class="opacity-80 font-medium text-sm leading-relaxed">Sistem inteligent anti-inundație. Liniște sufletească inclusă în pachet.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- EDITORIAL GALLERY -->
+    <section id="gallery" class="py-32 bg-onyx/50">
+      <div class="max-w-[1400px] mx-auto px-6">
+        <div class="mb-20">
+          <h2 x-intersect.once="$el.classList.add('active')" class="reveal text-4xl font-bold tracking-tight">O Privire De Aproape</h2>
+        </div>
+        
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:h-[600px]">
+          <div x-intersect.once="$el.classList.add('active')" class="reveal stagger-1 col-span-2 row-span-1 md:row-span-2 rounded-[30px] md:rounded-[40px] overflow-hidden bg-deep-black border border-white/5 aspect-square md:aspect-auto">
+            <img src="assets/images/gallery/carbopurity-black-context.jpg" alt="Gallery 1" class="w-full h-full object-cover image-zoom">
+          </div>
+          <div x-intersect.once="$el.classList.add('active')" class="reveal stagger-2 rounded-[30px] md:rounded-[40px] overflow-hidden bg-deep-black border border-white/5 aspect-square md:aspect-auto">
+            <img src="assets/images/gallery/carbopurity-black-detail.jpg" alt="Gallery 2" class="w-full h-full object-cover image-zoom">
+          </div>
+          <div x-intersect.once="$el.classList.add('active')" class="reveal stagger-3 rounded-[30px] md:rounded-[40px] overflow-hidden bg-deep-black border border-white/5 aspect-square md:aspect-auto">
+            <img src="assets/images/gallery/carbopurity-black-angle.jpg" alt="Gallery 3" class="w-full h-full object-cover image-zoom">
+          </div>
+          <div x-intersect.once="$el.classList.add('active')" class="reveal stagger-1 col-span-2 rounded-[30px] md:rounded-[40px] overflow-hidden bg-deep-black border border-white/5 aspect-video md:aspect-auto">
+            <img src="assets/images/gallery/carbopurity-black-round.jpg" alt="Gallery 4" class="w-full h-full object-cover image-zoom">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="py-32">
+      <div class="max-w-[1400px] mx-auto px-6 text-center">
+        <div x-intersect.once="$el.classList.add('active')" class="reveal">
+          <h2 class="text-sm font-bold tracking-[0.3em] uppercase opacity-40 mb-12">Experiența Utilizatorului</h2>
+        </div>
+        
+        <div class="relative max-w-4xl mx-auto overflow-hidden px-4">
+          <div x-intersect.once="$el.classList.add('active')" class="reveal stagger-1 italic text-3xl md:text-5xl font-medium leading-tight mb-12">
+            &ldquo;Un aparat excepțional. Silențios, elegant și face exact ce promite. Apa sparkling este la nivelul celor mai bune ape îmbuteliate.&rdquo;
+          </div>
+          <div x-intersect.once="$el.classList.add('active')" class="reveal stagger-2">
+            <span class="block font-bold text-lg">Ovidiu</span>
+            <span class="text-sm text-silver-gray uppercase tracking-widest">Client Verificat</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- THE SERVICE PROMISE -->
+    <section id="service" class="py-32 bg-onyx">
+      <div class="max-w-[1400px] mx-auto px-6">
+        <div class="grid lg:grid-cols-2 gap-24 items-center">
+          <div x-intersect.once="$el.classList.add('active')" class="reveal">
+            <h2 class="text-5xl font-bold tracking-tighter mb-8 italic">Zero Griji. <br>Doar Hidratare.</h2>
+            <p class="text-silver-gray text-lg leading-relaxed mb-12">Cu sistemul nostru de abonament, totul este inclus. De la instalarea inițială până la mentenanța periodică și schimbul filtrelor.</p>
+            
+            <ul class="space-y-6">
+              <li class="flex items-center gap-4">
+                <div class="w-2 h-2 rounded-full bg-cyan-glow"></div>
+                <span>Instalare profesională în 5-7 zile</span>
+              </li>
+              <li class="flex items-center gap-4">
+                <div class="w-2 h-2 rounded-full bg-cyan-glow"></div>
+                <span>Igienizare și service inclus</span>
+              </li>
+              <li class="flex items-center gap-4">
+                <div class="w-2 h-2 rounded-full bg-cyan-glow"></div>
+                <span>Schimb butelie CO2 gratuit la 6 luni</span>
+              </li>
+            </ul>
+          </div>
+          
+          <div x-intersect.once="$el.classList.add('active')" class="reveal stagger-1">
+            <div class="aspect-square bg-deep-black rounded-[60px] border border-white/5 flex items-center justify-center p-12">
+               <img src="assets/images/gallery/carbopurity-black-round.jpg" alt="Full product" class="w-full h-full object-contain image-zoom">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section id="contact" class="py-48 relative overflow-hidden">
+      <div class="absolute inset-0 bg-cyan-glow/5 blur-[120px] rounded-full -translate-y-1/2"></div>
+      
+      <div class="relative z-10 max-w-4xl mx-auto px-6 text-center space-y-12">
+        <div x-intersect.once="$el.classList.add('active')" class="reveal">
+          <h2 class="text-6xl md:text-8xl font-black tracking-tighter leading-none mb-6">Începe Acum.</h2>
+          <p class="text-xl text-silver-gray">Transformă modul în care bei apă. Echipa noastră te va contacta pentru o ofertă personalizată.</p>
+        </div>
+
+        <div x-intersect.once="$el.classList.add('active')" class="reveal stagger-1 pt-8 flex flex-col md:flex-row items-center justify-center gap-6">
+          <a href="https://lafantana.ro/ro/watercooler-cu-filtre-apa-carbopurity-black.html" 
+             target="_blank"
+             class="bg-white text-black px-12 py-6 rounded-full text-sm font-black uppercase tracking-[0.2em] hover:bg-cyan-glow hover:scale-105 transition-all w-full md:w-auto">
+            Configurator Abonament
+          </a>
+          <a href="tel:0212007200" 
+             class="border border-white/20 px-12 py-6 rounded-full text-sm font-black uppercase tracking-[0.2em] hover:bg-white hover:text-black transition-all w-full md:w-auto">
+            Sună Specialistul
+          </a>
+        </div>
+        
+        <p class="text-[10px] text-silver-gray/50 uppercase tracking-widest pt-12">
+          La Fântâna S.R.L. © 2026 • Toate drepturile rezervate
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    function v4_controller() {
+      return {
+        scrolled: false,
+        navItems: [
+          { id: 'hero', label: 'Intro' },
+          { id: 'features', label: 'Experiență' },
+          { id: 'gallery', label: 'Galerie' },
+          { id: 'specs', label: 'Detalii' },
+          { id: 'service', label: 'Service' },
+        ],
+        init() {
+          window.addEventListener('scroll', () => {
+            this.scrolled = window.scrollY > 100;
+          }, { passive: true });
+        }
+      }
+    }
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href').substring(1);
+        const targetElement = document.getElementById(targetId);
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+  </script>
+
+  <style>
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+    .animate-float {
+      animation: float 6s ease-in-out infinite;
+    }
+  </style>
+
+</body>
+</html>

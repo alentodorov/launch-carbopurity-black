@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="ro" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CARBOPURITY BLACK — [HYDRATION ENGINE]</title>
+  <meta name="description" content="CARBOPURITY BLACK // SYSTEM STATUS: ACTIVE. COLD. HOT. SPARKLING. ULTRAVIOLET PURIFICATION.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/intersect@3.x.x/dist/cdn.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+  <style type="text/tailwindcss">
+    @theme {
+      --color-brutal-bg: #EAEAEA;
+      --color-brutal-black: #121212;
+      --color-brutal-accent: #CCFF00; /* Neon Lime */
+      --color-brutal-accent-2: #FF3366; /* Hot Pink */
+      --color-brutal-border: #000000;
+      
+      --font-display: 'Space Grotesk', system-ui, sans-serif;
+      --font-mono: 'Space Mono', monospace;
+    }
+  </style>
+
+  <style>
+    [x-cloak] { display: none !important; }
+    
+    body {
+      background-image: 
+        radial-gradient(circle at 1px 1px, #000 1px, transparent 0);
+      background-size: 20px 20px;
+    }
+
+    .brutal-border {
+      border: 3px solid var(--color-brutal-border);
+      box-shadow: 6px 6px 0px 0px var(--color-brutal-border);
+      transition: all 0.2s ease-in-out;
+    }
+
+    .brutal-border:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 8px 8px 0px 0px var(--color-brutal-border);
+    }
+    
+    .brutal-border:active {
+      transform: translate(2px, 2px);
+      box-shadow: 2px 2px 0px 0px var(--color-brutal-border);
+    }
+
+    .marquee-container {
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .marquee-content {
+      display: inline-block;
+      animation: marquee 20s linear infinite;
+    }
+
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .glitch-wrapper {
+      position: relative;
+    }
+
+    .glitch-wrapper::before,
+    .glitch-wrapper::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--color-brutal-bg);
+    }
+
+    .glitch-wrapper::before {
+      left: 2px;
+      text-shadow: -1px 0 red;
+      clip: rect(24px, 550px, 90px, 0);
+      animation: glitch-anim-2 3s infinite linear alternate-reverse;
+    }
+
+    .glitch-wrapper::after {
+      left: -2px;
+      text-shadow: -1px 0 blue;
+      clip: rect(85px, 550px, 140px, 0);
+      animation: glitch-anim 2.5s infinite linear alternate-reverse;
+    }
+
+    @keyframes glitch-anim {
+      0% { clip: rect(14px, 9999px, 122px, 0); }
+      5% { clip: rect(69px, 9999px, 6px, 0); }
+      10% { clip: rect(6px, 9999px, 137px, 0); }
+      15% { clip: rect(98px, 9999px, 66px, 0); }
+      20% { clip: rect(23px, 9999px, 51px, 0); }
+      25% { clip: rect(66px, 9999px, 18px, 0); }
+      30% { clip: rect(104px, 9999px, 26px, 0); }
+      35% { clip: rect(18px, 9999px, 89px, 0); }
+      40% { clip: rect(138px, 9999px, 83px, 0); }
+      45% { clip: rect(38px, 9999px, 11px, 0); }
+      50% { clip: rect(74px, 9999px, 62px, 0); }
+      55% { clip: rect(129px, 9999px, 119px, 0); }
+      60% { clip: rect(27px, 9999px, 65px, 0); }
+      65% { clip: rect(54px, 9999px, 90px, 0); }
+      70% { clip: rect(95px, 9999px, 7px, 0); }
+      75% { clip: rect(11px, 9999px, 32px, 0); }
+      80% { clip: rect(62px, 9999px, 140px, 0); }
+      85% { clip: rect(102px, 9999px, 78px, 0); }
+      90% { clip: rect(41px, 9999px, 2px, 0); }
+      95% { clip: rect(88px, 9999px, 57px, 0); }
+      100% { clip: rect(125px, 9999px, 126px, 0); }
+    }
+
+    @keyframes glitch-anim-2 {
+      0% { clip: rect(65px, 9999px, 119px, 0); }
+      5% { clip: rect(27px, 9999px, 6px, 0); }
+      10% { clip: rect(89px, 9999px, 56px, 0); }
+      15% { clip: rect(125px, 9999px, 2px, 0); }
+      20% { clip: rect(32px, 9999px, 107px, 0); }
+      25% { clip: rect(99px, 9999px, 63px, 0); }
+      30% { clip: rect(7px, 9999px, 140px, 0); }
+      35% { clip: rect(41px, 9999px, 82px, 0); }
+      40% { clip: rect(110px, 9999px, 26px, 0); }
+      45% { clip: rect(15px, 9999px, 114px, 0); }
+      50% { clip: rect(78px, 9999px, 99px, 0); }
+      55% { clip: rect(138px, 9999px, 7px, 0); }
+      60% { clip: rect(39px, 9999px, 68px, 0); }
+      65% { clip: rect(92px, 9999px, 4px, 0); }
+      70% { clip: rect(2px, 9999px, 128px, 0); }
+      75% { clip: rect(56px, 9999px, 53px, 0); }
+      80% { clip: rect(122px, 9999px, 17px, 0); }
+      85% { clip: rect(24px, 9999px, 101px, 0); }
+      90% { clip: rect(72px, 9999px, 90px, 0); }
+      95% { clip: rect(106px, 9999px, 15px, 0); }
+      100% { clip: rect(50px, 9999px, 64px, 0); }
+    }
+    
+    .filter-noise {
+      filter: contrast(120%) brightness(90%) sepia(20%);
+    }
+
+    .reveal-brutal {
+      opacity: 0;
+      transform: translateY(50px) rotate(2deg);
+      transition: all 0.4s cubic-bezier(0, 0, 0.2, 1);
+    }
+    
+    .reveal-brutal.active {
+      opacity: 1;
+      transform: translateY(0) rotate(0deg);
+    }
+
+    .stamp {
+      mask-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h200v200H0z" fill="black"/></svg>');
+      -webkit-mask-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h200v200H0z" fill="black"/></svg>');
+    }
+  </style>
+</head>
+
+<body class="bg-brutal-bg text-brutal-black font-display antialiased selection:bg-brutal-black selection:text-brutal-accent overflow-x-hidden" x-data="v6_controller()">
+
+  <!-- MARQUEE BAR TOP -->
+  <div class="fixed top-0 left-0 right-0 z-[101] bg-brutal-accent border-b-3 border-brutal-border py-2 font-mono font-bold text-sm tracking-tighter uppercase transform -skew-y-0">
+    <div class="marquee-container">
+      <div class="marquee-content">
+        WARNING: EXTREME HYDRATION IMMINENT /// CARBOPURITY BLACK /// SYSTEM ONLINE /// 5.600L CAPACITY /// UV STERILIZATION ACTIVE /// WARNING: EXTREME HYDRATION IMMINENT /// CARBOPURITY BLACK /// SYSTEM ONLINE /// 5.600L CAPACITY /// UV STERILIZATION ACTIVE ///
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVIGATION -->
+  <nav class="fixed top-12 left-6 z-[100] hidden md:block">
+    <div class="flex flex-col gap-4">
+      <a href="#hero" class="brutal-border bg-white px-4 py-2 font-bold uppercase hover:bg-brutal-accent-2 transition-colors inline-block w-max rotate-[-2deg]">
+        [Start]
+      </a>
+      <a href="#specs" class="brutal-border bg-white px-4 py-2 font-bold uppercase hover:bg-brutal-accent transition-colors inline-block w-max rotate-[1deg]">
+        [Specs]
+      </a>
+      <a href="#gallery" class="brutal-border bg-white px-4 py-2 font-bold uppercase hover:bg-brutal-accent-2 transition-colors inline-block w-max rotate-[-1deg]">
+        [Visuals]
+      </a>
+      <a href="#contact" class="brutal-border bg-brutal-black text-white px-4 py-2 font-bold uppercase hover:bg-brutal-accent hover:text-black transition-colors inline-block w-max rotate-[2deg]">
+        [Get_It]
+      </a>
+    </div>
+  </nav>
+
+  <!-- MOBILE NAV -->
+  <nav class="fixed bottom-6 left-6 right-6 z-[100] md:hidden">
+    <div class="brutal-border bg-white p-2 flex justify-between items-center">
+       <span class="font-bold font-mono pl-2">MENU //</span>
+       <a href="#contact" class="bg-brutal-black text-white px-4 py-2 font-bold text-sm uppercase">ACTION</a>
+    </div>
+  </nav>
+
+  <main class="pt-24 pb-24 px-4 md:px-0">
+
+    <!-- HERO SECTION -->
+    <section id="hero" class="min-h-screen flex flex-col items-center justify-center relative">
+      <!-- Big decorative background text -->
+      <div class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-5 overflow-hidden select-none">
+        <span class="text-[20vw] font-black leading-none transform -rotate-12 whitespace-nowrap">WATER</span>
+      </div>
+
+      <div class="relative z-10 max-w-6xl w-full mx-auto grid md:grid-cols-2 gap-12 items-center">
+        <!-- Content Left -->
+        <div class="order-2 md:order-1 space-y-8">
+          <div class="inline-block bg-brutal-black text-white px-2 py-1 font-mono text-xs mb-4 rotate-2">
+            // PROTOCOL: HYDRATION_V6
+          </div>
+          
+          <h1 class="text-6xl md:text-8xl font-black leading-[0.9] tracking-tighter uppercase" data-text="CARBOPURITY BLACK">
+            <span class="block bg-white border-3 border-brutal-border p-2 w-max mb-2 transform -rotate-1 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">CARBOPURITY</span>
+            <span class="block text-brutal-accent-2" style="text-shadow: 4px 4px 0px #000;">BLACK_</span>
+          </h1>
+
+          <p class="font-mono text-lg bg-white border-2 border-brutal-border p-4 max-w-md shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+            > SYSTEM_CHECK: OK<br>
+            > TEMPERATURE: VARIABLE<br>
+            > CARBONATION: MAX<br>
+            > STATUS: READY_TO_POUR
+          </p>
+
+          <div class="flex gap-4 pt-4">
+             <button class="brutal-border bg-brutal-accent px-8 py-4 font-bold text-xl uppercase tracking-tighter hover:bg-white">
+               INITIATE SEQUENCE
+             </button>
+          </div>
+        </div>
+
+        <!-- Image Right -->
+        <div class="order-1 md:order-2 relative">
+           <div class="absolute inset-0 bg-brutal-accent-2 translate-x-4 translate-y-4 border-3 border-brutal-border z-0"></div>
+           <div class="relative z-10 bg-white border-3 border-brutal-border p-8 flex items-center justify-center filter-noise">
+              <img src="assets/images/hero/carbopurity-black-main.png" alt="Device" class="w-full max-w-[400px] grayscale contrast-125 hover:grayscale-0 transition-all duration-300">
+              
+              <!-- Sticker 1 -->
+              <div class="absolute -top-6 -right-6 bg-brutal-accent text-black w-24 h-24 rounded-full border-3 border-brutal-border flex items-center justify-center font-black rotate-12 animate-bounce">
+                NEW!
+              </div>
+              <!-- Sticker 2 -->
+              <div class="absolute bottom-10 -left-10 bg-black text-white px-4 py-2 font-mono text-xs border-2 border-white -rotate-6">
+                5600L FILTER
+              </div>
+           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SPECS GRID -->
+    <section id="specs" class="py-24 border-t-3 border-brutal-border bg-white relative">
+      <div class="absolute top-0 left-0 bg-brutal-black text-white px-4 py-1 font-mono font-bold text-xs uppercase transform -translate-y-1/2 ml-10">
+        // TECHNICAL_DATA
+      </div>
+
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          
+          <!-- Spec 1 -->
+          <div x-intersect.once="$el.classList.add('active')" class="reveal-brutal bg-brutal-bg border-3 border-brutal-border p-6 relative group hover:bg-brutal-accent transition-colors">
+            <div class="absolute top-2 right-2 font-mono text-4xl font-bold opacity-20">01</div>
+            <h3 class="text-3xl font-black mb-4 uppercase">Cold</h3>
+            <p class="font-mono text-sm leading-tight border-t-2 border-brutal-border pt-4">
+              CHILLED TO PERFECTION using advanced compressor technology.
+            </p>
+          </div>
+
+          <!-- Spec 2 -->
+          <div x-intersect.once="$el.classList.add('active')" class="reveal-brutal bg-brutal-bg border-3 border-brutal-border p-6 relative group hover:bg-brutal-accent-2 transition-colors" style="transition-delay: 100ms;">
+            <div class="absolute top-2 right-2 font-mono text-4xl font-bold opacity-20">02</div>
+            <h3 class="text-3xl font-black mb-4 uppercase">Hot</h3>
+            <p class="font-mono text-sm leading-tight border-t-2 border-brutal-border pt-4">
+              INSTANT HEAT for tea, coffee, or instant meals. Safety lock engaged.
+            </p>
+          </div>
+
+          <!-- Spec 3 -->
+          <div x-intersect.once="$el.classList.add('active')" class="reveal-brutal bg-brutal-bg border-3 border-brutal-border p-6 relative group hover:bg-brutal-accent transition-colors" style="transition-delay: 200ms;">
+            <div class="absolute top-2 right-2 font-mono text-4xl font-bold opacity-20">03</div>
+            <h3 class="text-3xl font-black mb-4 uppercase">Sparkling</h3>
+            <p class="font-mono text-sm leading-tight border-t-2 border-brutal-border pt-4">
+              HIGH PRESSURE CO2 INJECTION. 600L capacity per cylinder.
+            </p>
+          </div>
+
+          <!-- Spec 4 -->
+          <div x-intersect.once="$el.classList.add('active')" class="reveal-brutal bg-brutal-bg border-3 border-brutal-border p-6 relative group hover:bg-brutal-accent-2 transition-colors" style="transition-delay: 300ms;">
+            <div class="absolute top-2 right-2 font-mono text-4xl font-bold opacity-20">04</div>
+            <h3 class="text-3xl font-black mb-4 uppercase">Pure</h3>
+            <p class="font-mono text-sm leading-tight border-t-2 border-brutal-border pt-4">
+              NSC MULTI-LAYER FILTRATION + UV STERILIZATION. 99.9% pure.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- BIG IMAGE BANNER -->
+    <section class="py-24 px-6 overflow-hidden">
+      <div class="max-w-7xl mx-auto relative">
+         <div class="absolute inset-0 border-3 border-brutal-border bg-brutal-black transform translate-x-4 translate-y-4"></div>
+         <div class="relative border-3 border-brutal-border bg-white h-[500px] overflow-hidden flex items-center justify-center">
+            <img src="assets/images/gallery/carbopurity-black-context.jpg" alt="Context" class="w-full h-full object-cover filter contrast-125 grayscale hover:grayscale-0 transition-all duration-500">
+            
+            <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+               <h2 class="text-[10vw] font-black text-transparent stroke-text uppercase tracking-tighter mix-blend-difference" style="-webkit-text-stroke: 2px white;">
+                 NO PLASTIC
+               </h2>
+            </div>
+         </div>
+      </div>
+    </section>
+
+    <!-- GALLERY COLLAGE -->
+    <section id="gallery" class="py-24 bg-brutal-accent relative">
+       <!-- Decoration -->
+       <div class="absolute top-0 left-0 w-full h-4 bg-stripes"></div>
+       
+       <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="md:col-span-1 space-y-8">
+             <div class="bg-white border-3 border-brutal-border p-4 shadow-[8px_8px_0px_0px_black] rotate-2 hover:rotate-0 transition-transform">
+                <img src="assets/images/gallery/carbopurity-black-detail.jpg" class="w-full border-2 border-black grayscale block mb-4">
+                <p class="font-mono text-xs uppercase font-bold">FIG 1.0 // DETAIL VIEW</p>
+             </div>
+             
+             <div class="bg-brutal-black text-white p-8 border-3 border-white -rotate-1 shadow-[8px_8px_0px_0px_black]">
+                <h3 class="text-4xl font-black uppercase mb-4">Design<br>Matters</h3>
+                <p class="font-mono text-sm">Minimal footprint. Maximum output. 23cm width fits anywhere.</p>
+             </div>
+          </div>
+          
+          <div class="md:col-span-2">
+             <div class="bg-white border-3 border-brutal-border p-4 shadow-[12px_12px_0px_0px_black] h-full flex flex-col">
+                <div class="flex-1 overflow-hidden border-2 border-black mb-4 relative group">
+                   <img src="assets/images/gallery/carbopurity-black-angle.jpg" class="w-full h-full object-cover grayscale group-hover:scale-110 transition-transform duration-500">
+                   <div class="absolute top-4 left-4 bg-brutal-accent-2 px-2 py-1 border-2 border-black font-bold text-xs">ZOOM_LENS</div>
+                </div>
+                <div class="flex justify-between items-end border-t-3 border-black pt-4">
+                   <div>
+                      <h4 class="font-black text-2xl uppercase">Side Profile</h4>
+                      <span class="font-mono text-xs">SCALE: 1:1</span>
+                   </div>
+                   <button class="bg-black text-white w-12 h-12 flex items-center justify-center font-bold text-2xl hover:bg-brutal-accent hover:text-black border-2 border-black transition-colors">+</button>
+                </div>
+             </div>
+          </div>
+       </div>
+    </section>
+
+    <!-- FOOTER / TERMINAL -->
+    <section id="contact" class="bg-brutal-black text-green-400 font-mono p-12 min-h-[400px] border-t-4 border-brutal-accent">
+      <div class="max-w-4xl mx-auto">
+        <div class="mb-8 border-b border-green-400/30 pb-4">
+          <span class="animate-pulse">_</span> TERMINAL SESSION ACTIVE
+        </div>
+        
+        <div class="grid md:grid-cols-2 gap-12">
+           <div class="space-y-4">
+             <p>> INITIATING CONTACT PROTOCOL...</p>
+             <p>> LOADING PRICING MODULE...</p>
+             <p>> ERROR: USER INPUT REQUIRED</p>
+             <br>
+             <p class="text-white">To proceed with acquisition, please select an option:</p>
+             
+             <div class="flex flex-col gap-4 mt-8">
+                <a href="https://lafantana.ro" target="_blank" class="block border border-green-400 p-4 hover:bg-green-400 hover:text-black transition-colors text-center uppercase tracking-widest">
+                  [ EXECUTE_ORDER_66 ]
+                </a>
+                <a href="tel:0212007200" class="block border border-green-400 p-4 hover:bg-green-400 hover:text-black transition-colors text-center uppercase tracking-widest">
+                  [ CALL_HQ ]
+                </a>
+             </div>
+           </div>
+           
+           <div class="border border-green-400/50 p-6 opacity-70">
+              <pre class="text-[10px] leading-3 overflow-hidden">
+   _____          _____  ____  ____  
+  / ____|   /\   |  __ \|  _ \|  _ \ 
+ | |       /  \  | |__) | |_) | |_) |
+ | |      / /\ \ |  _  /|  _ <|  _ < 
+ | |____ / ____ \| | \ \| |_) | |_) |
+  \_____/_/    \_\_|  \_\____/|____/ 
+  
+  BLACK EDITION V6.0
+  COMPILE DATE: 2026-02-16
+  SYSTEM: ONLINE
+              </pre>
+           </div>
+        </div>
+        
+        <div class="mt-24 text-center text-xs opacity-50">
+           // LA FÂNTÂNA S.R.L. // ALL RIGHTS RESERVED // END OF LINE
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <style>
+    .bg-stripes {
+      background: repeating-linear-gradient(
+        45deg,
+        #000,
+        #000 10px,
+        #CCFF00 10px,
+        #CCFF00 20px
+      );
+    }
+  </style>
+
+  <script>
+    function v6_controller() {
+      return {
+        // Simple controller logic
+      }
+    }
+  </script>
+
+</body>
+</html>

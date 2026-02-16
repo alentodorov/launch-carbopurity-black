@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="ro" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CARBOPURITY BLACK — La Fântâna</title>
+  <meta name="description" content="Carbopurity Black oferă apă filtrată, rece, fierbinte și carbogazificată dintr-un aparat compact cu sterilizare UV.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="assets/images/hero/carbopurity-black-main.png">
+
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/intersect@3.x.x/dist/cdn.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+  <style type="text/tailwindcss">
+    @theme {
+      --color-void: #050505;
+      --color-surface: #0E0E0E;
+      --color-surface-2: #171717;
+      --color-surface-3: #222222;
+      --color-edge: #2A2A2A;
+      --color-muted: #666666;
+      --color-silver: #999999;
+      --color-cloud: #CCCCCC;
+      --color-snow: #F0F0F0;
+      --color-white: #FFFFFF;
+      --color-cyan: #30C6FF;
+      --color-cyan-dim: #30C6FF40;
+      --color-cyan-glow: #30C6FF15;
+      --color-teal: #00D4AA;
+      --color-amber: #FFB547;
+      --font-sans: 'Inter', system-ui, sans-serif;
+      --font-display: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+    }
+  </style>
+
+  <style>
+    /* Oversized display text */
+    .text-massive { font-size: clamp(3.5rem, 12vw, 11rem); line-height: 0.9; letter-spacing: -0.04em; }
+    .text-huge { font-size: clamp(2.5rem, 7vw, 6rem); line-height: 0.95; letter-spacing: -0.03em; }
+    .text-display { font-size: clamp(1.8rem, 4vw, 3.5rem); line-height: 1.05; letter-spacing: -0.025em; }
+
+    /* Horizontal scroll section */
+    .horizontal-scroll { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
+    .horizontal-scroll::-webkit-scrollbar { display: none; }
+    .horizontal-scroll > * { scroll-snap-align: start; flex-shrink: 0; }
+
+    /* Text reveal mask */
+    .text-reveal { clip-path: inset(0 100% 0 0); }
+    .text-reveal.revealed { clip-path: inset(0 0% 0 0); transition: clip-path 1s cubic-bezier(0.77, 0, 0.175, 1); }
+
+    /* Image reveal */
+    .img-reveal { clip-path: inset(100% 0 0 0); }
+    .img-reveal.revealed { clip-path: inset(0% 0 0 0); transition: clip-path 1.2s cubic-bezier(0.77, 0, 0.175, 1); }
+
+    /* Parallax via CSS scroll-driven animations (Chrome/Edge) */
+    @supports (animation-timeline: view()) {
+      .parallax-up {
+        animation: parallaxUp linear both;
+        animation-timeline: view();
+        animation-range: entry 0% cover 50%;
+      }
+      @keyframes parallaxUp {
+        from { transform: translateY(80px); opacity: 0.3; }
+        to { transform: translateY(0); opacity: 1; }
+      }
+      .parallax-scale {
+        animation: parallaxScale linear both;
+        animation-timeline: view();
+        animation-range: entry 0% cover 40%;
+      }
+      @keyframes parallaxScale {
+        from { transform: scale(0.92); opacity: 0; }
+        to { transform: scale(1); opacity: 1; }
+      }
+    }
+
+    /* Marquee */
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .marquee-track { animation: marquee 30s linear infinite; }
+    .marquee-track:hover { animation-play-state: paused; }
+
+    /* Number counter animation */
+    @keyframes countUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* Grain overlay */
+    .grain::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.4;
+    }
+
+    /* Smooth focus */
+    :focus-visible { outline: 2px solid #30C6FF; outline-offset: 3px; border-radius: 4px; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+      .marquee-track { animation: none; }
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: #050505; }
+    ::-webkit-scrollbar-thumb { background: #2A2A2A; border-radius: 2px; }
+    ::-webkit-scrollbar-thumb:hover { background: #30C6FF; }
+  </style>
+</head>
+
+<body class="bg-void text-snow font-sans antialiased grain" x-data="app()">
+
+  <!-- ============================================ -->
+  <!-- CURSOR FOLLOWER (desktop only)               -->
+  <!-- ============================================ -->
+  <div x-show="!isMobile"
+       :style="`transform: translate(${cursorX - 10}px, ${cursorY - 10}px)`"
+       class="fixed w-5 h-5 rounded-full border border-cyan/50 pointer-events-none z-[200] mix-blend-difference transition-transform duration-100 ease-out hidden lg:block"
+       aria-hidden="true"></div>
+
+  <!-- ============================================ -->
+  <!-- NAV — Minimal, Art Lebedev style             -->
+  <!-- ============================================ -->
+  <nav class="fixed top-0 left-0 right-0 z-50 mix-blend-difference" role="navigation" aria-label="Navigare">
+    <div class="max-w-[1800px] mx-auto px-5 sm:px-8 lg:px-12 flex items-center justify-between h-16 lg:h-20">
+      <a href="#" class="text-white text-sm font-display font-medium tracking-wide">La Fântâna</a>
+      <div class="flex items-center gap-6 lg:gap-8">
+        <a href="#specs" class="hidden sm:block text-white/60 hover:text-white text-xs tracking-widest uppercase transition-colors">Specificații</a>
+        <a href="#gallery" class="hidden sm:block text-white/60 hover:text-white text-xs tracking-widest uppercase transition-colors">Galerie</a>
+        <a href="#contact" class="text-xs tracking-widest uppercase text-cyan">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ============================================ -->
+    <!-- HERO — Oversized typography + product        -->
+    <!-- ============================================ -->
+    <section id="hero" class="relative min-h-screen flex flex-col justify-end overflow-hidden pb-12 lg:pb-20 pt-20">
+      <!-- Background gradient -->
+      <div class="absolute inset-0 bg-gradient-to-b from-void via-void to-surface" aria-hidden="true"></div>
+
+      <!-- Product image — floats above the text on mobile, beside on desktop -->
+      <div class="absolute inset-0 flex items-center justify-center lg:justify-end lg:pr-[8%] pointer-events-none">
+        <img src="assets/images/hero/carbopurity-black-main.png"
+             alt="Carbopurity Black — watercooler premium"
+             width="500" height="625"
+             class="w-[55vw] max-w-[280px] sm:max-w-[340px] lg:max-w-[420px] xl:max-w-[480px] h-auto opacity-90 drop-shadow-[0_40px_80px_rgba(48,198,255,0.1)]"
+             loading="eager" fetchpriority="high" decoding="async">
+      </div>
+
+      <!-- Oversized title -->
+      <div class="relative max-w-[1800px] mx-auto px-5 sm:px-8 lg:px-12 w-full">
+        <div x-data="{ show: false }" x-init="setTimeout(() => show = true, 200)">
+          <p :class="show ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'"
+             class="text-cyan text-xs sm:text-sm font-display font-medium tracking-[0.2em] uppercase mb-4 lg:mb-6 transition-all duration-700 delay-300">
+            Watercooler cu filtre de apă
+          </p>
+          <h1 class="text-massive font-display font-bold text-white select-none">
+            <span :class="show ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'"
+                  class="block transition-all duration-1000 delay-500 ease-out">CARBO</span>
+            <span :class="show ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'"
+                  class="block transition-all duration-1000 delay-700 ease-out text-white/20">PURITY</span>
+          </h1>
+          <div :class="show ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'"
+               class="mt-6 lg:mt-8 flex items-center gap-6 transition-all duration-700 delay-1000">
+            <span class="w-12 h-px bg-cyan/40"></span>
+            <p class="text-silver text-sm lg:text-base max-w-xs leading-relaxed">
+              Apă filtrată, răcită, fierbinte sau carbogazificată — dintr-un singur aparat.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scroll line -->
+      <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-px h-16 bg-gradient-to-b from-transparent to-cyan/30" aria-hidden="true"></div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- MARQUEE — Running text strip                 -->
+    <!-- ============================================ -->
+    <div class="border-y border-edge py-4 overflow-hidden bg-surface" aria-hidden="true">
+      <div class="marquee-track flex items-center gap-12 whitespace-nowrap w-max">
+        <span class="text-muted text-xs tracking-[0.3em] uppercase font-display">Filtrare NSC</span>
+        <span class="text-cyan/30">&#9670;</span>
+        <span class="text-muted text-xs tracking-[0.3em] uppercase font-display">Sterilizare UV</span>
+        <span class="text-cyan/30">&#9670;</span>
+        <span class="text-muted text-xs tracking-[0.3em] uppercase font-display">Apă carbogazificată</span>
+        <span class="text-cyan/30">&#9670;</span>
+        <span class="text-muted text-xs tracking-[0.3em] uppercase font-display">Waterblock</span>
+        <span class="text-cyan/30">&#9670;</span>
+        <span class="text-muted text-xs tracking-[0.3em] uppercase font-display">Design compact</span>
+        <span class="text-cyan/30">&#9670;</span>
+        <span class="text-muted text-xs tracking-[0.3em] uppercase font-display">5.600L capacitate filtru</span>
+        <span class="text-cyan/30">&#9670;</span>
+        <span class="text-muted text-xs tracking-[0.3em] uppercase font-display">600L apă carbo</span>
+        <span class="text-cyan/30">&#9670;</span>
+        <!-- Duplicate for seamless loop -->
+        <span class="text-muted text-xs tracking-[0.3em] uppercase font-display">Filtrare NSC</span>
+        <span class="text-cyan/30">&#9670;</span>
+        <span class="text-muted text-xs tracking-[0.3em] uppercase font-display">Sterilizare UV</span>
+        <span class="text-cyan/30">&#9670;</span>
+        <span class="text-muted text-xs tracking-[0.3em] uppercase font-display">Apă carbogazificată</span>
+        <span class="text-cyan/30">&#9670;</span>
+        <span class="text-muted text-xs tracking-[0.3em] uppercase font-display">Waterblock</span>
+        <span class="text-cyan/30">&#9670;</span>
+        <span class="text-muted text-xs tracking-[0.3em] uppercase font-display">Design compact</span>
+        <span class="text-cyan/30">&#9670;</span>
+        <span class="text-muted text-xs tracking-[0.3em] uppercase font-display">5.600L capacitate filtru</span>
+        <span class="text-cyan/30">&#9670;</span>
+        <span class="text-muted text-xs tracking-[0.3em] uppercase font-display">600L apă carbo</span>
+        <span class="text-cyan/30">&#9670;</span>
+      </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- INTRO — Split layout, Art Lebedev style      -->
+    <!-- ============================================ -->
+    <section class="py-24 lg:py-40 bg-surface">
+      <div class="max-w-[1800px] mx-auto px-5 sm:px-8 lg:px-12">
+        <div class="grid lg:grid-cols-12 gap-12 lg:gap-6 items-start"
+             x-data="{ v: false }" x-intersect.once.half="v = true">
+
+          <!-- Left: large number + label -->
+          <div class="lg:col-span-4 lg:sticky lg:top-32"
+               :class="v ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
+               style="transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1)">
+            <span class="text-huge font-display font-bold text-white/10">01</span>
+            <h2 class="text-display font-display font-bold text-white mt-2">Prezentare</h2>
+          </div>
+
+          <!-- Right: description -->
+          <div class="lg:col-span-7 lg:col-start-6 space-y-8"
+               :class="v ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'"
+               style="transition: all 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s">
+            <p class="text-xl sm:text-2xl lg:text-3xl font-light leading-relaxed text-cloud">
+              Carbopurity Black este un watercooler compact cu design minimalist, în culoare neagră, care se integrează ușor pe orice blat de bucătărie.
+            </p>
+            <p class="text-base text-silver leading-relaxed max-w-2xl">
+              Cu dimensiuni de doar 23 &times; 44 &times; 40 cm, ocupă spațiu minim și oferă acces rapid la apă plată rece, apă fierbinte și apă carbogazificată. Echipamentul se conectează direct la rețeaua de apă potabilă și filtrează apa printr-un sistem NSC cu multiple straturi de filtrare, păstrând conținutul natural de minerale.
+            </p>
+
+            <!-- Stats row -->
+            <div class="grid grid-cols-3 gap-4 pt-8 border-t border-edge">
+              <div x-data="{ v2: false }" x-intersect.once="v2 = true">
+                <div :class="v2 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'"
+                     style="transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1)">
+                  <span class="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-cyan">3</span>
+                  <p class="text-xs text-muted mt-1 uppercase tracking-wider">Tipuri de apă</p>
+                </div>
+              </div>
+              <div x-data="{ v2: false }" x-intersect.once="v2 = true">
+                <div :class="v2 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'"
+                     style="transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.15s">
+                  <span class="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-cyan">5.600</span>
+                  <p class="text-xs text-muted mt-1 uppercase tracking-wider">Litri filtrare</p>
+                </div>
+              </div>
+              <div x-data="{ v2: false }" x-intersect.once="v2 = true">
+                <div :class="v2 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'"
+                     style="transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.3s">
+                  <span class="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-cyan">600</span>
+                  <p class="text-xs text-muted mt-1 uppercase tracking-wider">Litri carbo / butelie</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- BENEFITS — Horizontal scroll cards           -->
+    <!-- ============================================ -->
+    <section class="py-24 lg:py-40 bg-void" id="benefits">
+      <div class="max-w-[1800px] mx-auto px-5 sm:px-8 lg:px-12 mb-12 lg:mb-16"
+           x-data="{ v: false }" x-intersect.once="v = true">
+        <div class="grid lg:grid-cols-12 gap-4"
+             :class="v ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
+             style="transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1)">
+          <div class="lg:col-span-4">
+            <span class="text-huge font-display font-bold text-white/10">02</span>
+            <h2 class="text-display font-display font-bold text-white mt-2">De ce contează</h2>
+          </div>
+          <div class="lg:col-span-5 lg:col-start-6 flex items-end">
+            <p class="text-silver text-base leading-relaxed">
+              Carbopurity Black simplifică accesul la apă de calitate acasă sau la birou, eliminând nevoia de sticle de plastic.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Horizontal scrolling cards -->
+      <div class="horizontal-scroll gap-4 px-5 sm:px-8 lg:px-12 pb-4"
+           x-data="{ v: false }" x-intersect.once="v = true">
+
+        <div :class="v ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'"
+             style="transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1)"
+             class="w-[85vw] sm:w-[45vw] lg:w-[380px] bg-surface-2 rounded-2xl p-8 lg:p-10 border border-edge group hover:border-cyan/20 transition-colors">
+          <div class="w-10 h-10 rounded-lg bg-cyan/10 flex items-center justify-center mb-6">
+            <img src="assets/images/icons/icon-filtered-water.png" alt="" width="24" height="24" loading="lazy" class="w-6 h-6 opacity-80">
+          </div>
+          <h3 class="font-display font-semibold text-lg text-white mb-3">Apă cu gust natural</h3>
+          <p class="text-silver text-sm leading-relaxed">Filtrul NSC elimină clorul și impuritățile, păstrând mineralele din apa de la sursă.</p>
+        </div>
+
+        <div :class="v ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'"
+             style="transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.1s"
+             class="w-[85vw] sm:w-[45vw] lg:w-[380px] bg-surface-2 rounded-2xl p-8 lg:p-10 border border-edge group hover:border-cyan/20 transition-colors">
+          <div class="w-10 h-10 rounded-lg bg-cyan/10 flex items-center justify-center mb-6">
+            <img src="assets/images/icons/icon-hot-cold.png" alt="" width="24" height="24" loading="lazy" class="w-6 h-6 opacity-80">
+          </div>
+          <h3 class="font-display font-semibold text-lg text-white mb-3">Trei tipuri de apă</h3>
+          <p class="text-silver text-sm leading-relaxed">Apă plată rece, apă fierbinte și apă carbogazificată, disponibile oricând dintr-un singur aparat.</p>
+        </div>
+
+        <div :class="v ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'"
+             style="transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.2s"
+             class="w-[85vw] sm:w-[45vw] lg:w-[380px] bg-surface-2 rounded-2xl p-8 lg:p-10 border border-edge group hover:border-cyan/20 transition-colors">
+          <div class="w-10 h-10 rounded-lg bg-cyan/10 flex items-center justify-center mb-6">
+            <img src="assets/images/icons/icon-no-pet.png" alt="" width="24" height="24" loading="lazy" class="w-6 h-6 opacity-80">
+          </div>
+          <h3 class="font-display font-semibold text-lg text-white mb-3">Zero plastic</h3>
+          <p class="text-silver text-sm leading-relaxed">Elimină necesitatea cumpărării, transportului și depozitării apei îmbuteliate.</p>
+        </div>
+
+        <div :class="v ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'"
+             style="transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.3s"
+             class="w-[85vw] sm:w-[45vw] lg:w-[380px] bg-surface-2 rounded-2xl p-8 lg:p-10 border border-edge group hover:border-cyan/20 transition-colors">
+          <div class="w-10 h-10 rounded-lg bg-cyan/10 flex items-center justify-center mb-6">
+            <svg class="w-6 h-6 text-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <h3 class="font-display font-semibold text-lg text-white mb-3">Sterilizare UV</h3>
+          <p class="text-silver text-sm leading-relaxed">Lampa UV integrată în zona robinetului asigură un nivel suplimentar de protecție microbiologică.</p>
+        </div>
+
+        <div :class="v ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'"
+             style="transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.4s"
+             class="w-[85vw] sm:w-[45vw] lg:w-[380px] bg-surface-2 rounded-2xl p-8 lg:p-10 border border-edge group hover:border-cyan/20 transition-colors">
+          <div class="w-10 h-10 rounded-lg bg-cyan/10 flex items-center justify-center mb-6">
+            <svg class="w-6 h-6 text-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"/></svg>
+          </div>
+          <h3 class="font-display font-semibold text-lg text-white mb-3">Siguranță pentru copii</h3>
+          <p class="text-silver text-sm leading-relaxed">Funcția de blocare previne utilizarea accidentală de către cei mici.</p>
+        </div>
+
+        <div :class="v ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'"
+             style="transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.5s"
+             class="w-[85vw] sm:w-[45vw] lg:w-[380px] bg-surface-2 rounded-2xl p-8 lg:p-10 border border-edge group hover:border-cyan/20 transition-colors mr-5 sm:mr-8 lg:mr-12">
+          <div class="w-10 h-10 rounded-lg bg-cyan/10 flex items-center justify-center mb-6">
+            <svg class="w-6 h-6 text-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
+          </div>
+          <h3 class="font-display font-semibold text-lg text-white mb-3">Protecție waterblock</h3>
+          <p class="text-silver text-sm leading-relaxed">Sistemul waterblock oferă siguranță suplimentară împotriva inundațiilor accidentale.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- HOW IT WORKS — Full-bleed image + overlay    -->
+    <!-- ============================================ -->
+    <section class="relative bg-surface py-24 lg:py-40 overflow-hidden" id="process">
+      <div class="max-w-[1800px] mx-auto px-5 sm:px-8 lg:px-12">
+
+        <div class="grid lg:grid-cols-12 gap-12 lg:gap-6 mb-20 lg:mb-32"
+             x-data="{ v: false }" x-intersect.once.half="v = true">
+          <div class="lg:col-span-4"
+               :class="v ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
+               style="transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1)">
+            <span class="text-huge font-display font-bold text-white/10">03</span>
+            <h2 class="text-display font-display font-bold text-white mt-2">Cum funcționează</h2>
+          </div>
+          <div class="lg:col-span-6 lg:col-start-6"
+               :class="v ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'"
+               style="transition: all 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s">
+            <p class="text-xl text-cloud leading-relaxed">
+              De la apa de la robinet până la apa filtrată și carbogazificată, în patru pași.
+            </p>
+          </div>
+        </div>
+
+        <!-- Steps — staggered layout -->
+        <div class="space-y-16 lg:space-y-0 lg:grid lg:grid-cols-4 lg:gap-1">
+
+          <div class="relative lg:border-r lg:border-edge lg:pr-8 lg:py-12 group"
+               x-data="{ v: false }" x-intersect.once="v = true">
+            <div :class="v ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
+                 style="transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1)">
+              <span class="text-6xl lg:text-7xl font-display font-bold text-cyan/10 group-hover:text-cyan/20 transition-colors">01</span>
+              <h3 class="font-display font-semibold text-xl text-white mt-4 mb-3">Racordare</h3>
+              <p class="text-silver text-sm leading-relaxed">Echipamentul se conectează direct la rețeaua de apă potabilă din locuință sau birou.</p>
+            </div>
+          </div>
+
+          <div class="relative lg:border-r lg:border-edge lg:px-8 lg:py-12 lg:mt-16 group"
+               x-data="{ v: false }" x-intersect.once="v = true">
+            <div :class="v ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
+                 style="transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.1s">
+              <span class="text-6xl lg:text-7xl font-display font-bold text-cyan/10 group-hover:text-cyan/20 transition-colors">02</span>
+              <h3 class="font-display font-semibold text-xl text-white mt-4 mb-3">Filtrare NSC</h3>
+              <p class="text-silver text-sm leading-relaxed">Filtrul combinat multi-strat cu carbon activ și nano-argint elimină clorul, compușii organici volatili și metalele grele. Capacitate: până la 5.600 de litri.</p>
+            </div>
+          </div>
+
+          <div class="relative lg:border-r lg:border-edge lg:px-8 lg:py-12 lg:mt-32 group"
+               x-data="{ v: false }" x-intersect.once="v = true">
+            <div :class="v ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
+                 style="transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.2s">
+              <span class="text-6xl lg:text-7xl font-display font-bold text-cyan/10 group-hover:text-cyan/20 transition-colors">03</span>
+              <h3 class="font-display font-semibold text-xl text-white mt-4 mb-3">Sterilizare UV</h3>
+              <p class="text-silver text-sm leading-relaxed">Lampa UV din zona robinetului asigură protecție microbiologică suplimentară înainte de servire.</p>
+            </div>
+          </div>
+
+          <div class="relative lg:pl-8 lg:py-12 lg:mt-48 group"
+               x-data="{ v: false }" x-intersect.once="v = true">
+            <div :class="v ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
+                 style="transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.3s">
+              <span class="text-6xl lg:text-7xl font-display font-bold text-cyan/10 group-hover:text-cyan/20 transition-colors">04</span>
+              <h3 class="font-display font-semibold text-xl text-white mt-4 mb-3">Servire</h3>
+              <p class="text-silver text-sm leading-relaxed">Alegi tipul de apă dorit — rece, fierbinte sau carbogazificată — și o servești printr-o simplă apăsare de buton.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- CO2 callout -->
+        <div class="mt-20 lg:mt-32 relative rounded-3xl overflow-hidden bg-surface-2 border border-edge"
+             x-data="{ v: false }" x-intersect.once="v = true">
+          <div :class="v ? 'opacity-100 scale-100' : 'opacity-0 scale-95'"
+               style="transition: all 1s cubic-bezier(0.16, 1, 0.3, 1)"
+               class="p-8 sm:p-12 lg:p-16 flex flex-col lg:flex-row items-center gap-8 lg:gap-16">
+            <img src="assets/images/specs/co2-bottle-dimensions.png"
+                 alt="Butelie CO2 — diametru 14 cm, înălțime 55 cm"
+                 width="120" height="160" loading="lazy" decoding="async"
+                 class="w-20 lg:w-28 h-auto flex-shrink-0 opacity-80">
+            <div>
+              <h3 class="text-2xl lg:text-3xl font-display font-bold text-white mb-4">Butelie CO2 de 5 litri inclusă</h3>
+              <p class="text-silver leading-relaxed max-w-2xl">Asigură până la 600 de litri de apă carbogazificată. Dimensiuni: 14 cm diametru, 55 cm înălțime. Butelia se schimbă gratuit la fiecare 6 luni, în cadrul abonamentului.</p>
+            </div>
+            <span class="text-6xl lg:text-8xl font-display font-bold text-cyan/15 flex-shrink-0 hidden sm:block">600L</span>
+          </div>
+        </div>
+
+        <p class="mt-8 text-xs text-muted text-center tracking-wide">
+          Procesul de filtrare nu modifică duritatea apei — apa își păstrează conținutul original de minerale.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- SPECS — Clean grid, Art Lebedev precision    -->
+    <!-- ============================================ -->
+    <section id="specs" class="py-24 lg:py-40 bg-void">
+      <div class="max-w-[1800px] mx-auto px-5 sm:px-8 lg:px-12">
+
+        <div class="grid lg:grid-cols-12 gap-12 lg:gap-6 mb-16 lg:mb-24"
+             x-data="{ v: false }" x-intersect.once.half="v = true">
+          <div class="lg:col-span-4"
+               :class="v ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
+               style="transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1)">
+            <span class="text-huge font-display font-bold text-white/10">04</span>
+            <h2 class="text-display font-display font-bold text-white mt-2">Specificații</h2>
+          </div>
+        </div>
+
+        <!-- Spec grid -->
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-edge rounded-2xl overflow-hidden"
+             x-data="{ v: false }" x-intersect.once="v = true">
+
+          <div :class="v ? 'opacity-100' : 'opacity-0'" style="transition: opacity 0.5s 0.05s" class="bg-surface p-6 lg:p-8">
+            <p class="text-xs text-muted uppercase tracking-widest mb-2 font-display">Dimensiuni</p>
+            <p class="text-xl font-display font-semibold text-white">23 &times; 44 &times; 40 cm</p>
+          </div>
+          <div :class="v ? 'opacity-100' : 'opacity-0'" style="transition: opacity 0.5s 0.1s" class="bg-surface p-6 lg:p-8">
+            <p class="text-xs text-muted uppercase tracking-widest mb-2 font-display">Culoare</p>
+            <p class="text-xl font-display font-semibold text-white">Negru</p>
+          </div>
+          <div :class="v ? 'opacity-100' : 'opacity-0'" style="transition: opacity 0.5s 0.15s" class="bg-surface p-6 lg:p-8">
+            <p class="text-xs text-muted uppercase tracking-widest mb-2 font-display">Tipuri de apă</p>
+            <p class="text-xl font-display font-semibold text-white">Rece, fierbinte, carbo</p>
+          </div>
+          <div :class="v ? 'opacity-100' : 'opacity-0'" style="transition: opacity 0.5s 0.2s" class="bg-surface p-6 lg:p-8">
+            <p class="text-xs text-muted uppercase tracking-widest mb-2 font-display">Filtru</p>
+            <p class="text-xl font-display font-semibold text-white">NSC multi-strat</p>
+            <p class="text-xs text-silver mt-1">Carbon activ + nano-argint</p>
+          </div>
+          <div :class="v ? 'opacity-100' : 'opacity-0'" style="transition: opacity 0.5s 0.25s" class="bg-surface p-6 lg:p-8">
+            <p class="text-xs text-muted uppercase tracking-widest mb-2 font-display">Capacitate filtrare</p>
+            <p class="text-xl font-display font-semibold text-cyan">5.600 litri</p>
+          </div>
+          <div :class="v ? 'opacity-100' : 'opacity-0'" style="transition: opacity 0.5s 0.3s" class="bg-surface p-6 lg:p-8">
+            <p class="text-xs text-muted uppercase tracking-widest mb-2 font-display">Sterilizare</p>
+            <p class="text-xl font-display font-semibold text-white">Lampă UV</p>
+            <p class="text-xs text-silver mt-1">La robinet</p>
+          </div>
+          <div :class="v ? 'opacity-100' : 'opacity-0'" style="transition: opacity 0.5s 0.35s" class="bg-surface p-6 lg:p-8">
+            <p class="text-xs text-muted uppercase tracking-widest mb-2 font-display">Butelie CO2</p>
+            <p class="text-xl font-display font-semibold text-white">5L</p>
+            <p class="text-xs text-silver mt-1">Ø 14 cm, h 55 cm</p>
+          </div>
+          <div :class="v ? 'opacity-100' : 'opacity-0'" style="transition: opacity 0.5s 0.4s" class="bg-surface p-6 lg:p-8">
+            <p class="text-xs text-muted uppercase tracking-widest mb-2 font-display">Presiune minimă</p>
+            <p class="text-xl font-display font-semibold text-white">2 bari</p>
+          </div>
+          <div :class="v ? 'opacity-100' : 'opacity-0'" style="transition: opacity 0.5s 0.45s" class="bg-surface p-6 lg:p-8">
+            <p class="text-xs text-muted uppercase tracking-widest mb-2 font-display">Protecții</p>
+            <p class="text-xl font-display font-semibold text-white">Waterblock + blocare copii</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- SERVICE — Timeline with stacking effect      -->
+    <!-- ============================================ -->
+    <section class="py-24 lg:py-40 bg-surface" id="service">
+      <div class="max-w-[1800px] mx-auto px-5 sm:px-8 lg:px-12">
+
+        <div class="grid lg:grid-cols-12 gap-12 lg:gap-6 mb-16 lg:mb-24"
+             x-data="{ v: false }" x-intersect.once.half="v = true">
+          <div class="lg:col-span-4"
+               :class="v ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
+               style="transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1)">
+            <span class="text-huge font-display font-bold text-white/10">05</span>
+            <h2 class="text-display font-display font-bold text-white mt-2">Service inclus</h2>
+          </div>
+          <div class="lg:col-span-5 lg:col-start-6 flex items-end"
+               :class="v ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'"
+               style="transition: all 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s">
+            <p class="text-silver text-base leading-relaxed">
+              Tot ce trebuie să faci este să apeși butonul. Echipa La Fântâna se ocupă de restul — de la instalare la mentenanță periodică.
+            </p>
+          </div>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="bg-surface-2 rounded-2xl p-8 border border-edge hover:border-cyan/20 transition-colors parallax-scale"
+               x-data="{ v: false }" x-intersect.once="v = true">
+            <div :class="v ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'"
+                 style="transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1)">
+              <img src="assets/images/icons/icon-installation.png" alt="" width="32" height="32" loading="lazy" class="w-8 h-8 mb-6 opacity-80">
+              <h3 class="font-display font-semibold text-lg text-white mb-2">Instalare profesională</h3>
+              <p class="text-silver text-sm leading-relaxed">Echipa de tehnicieni calificați vine la locație și montează aparatul în 5–7 zile lucrătoare.</p>
+            </div>
+          </div>
+
+          <div class="bg-surface-2 rounded-2xl p-8 border border-edge hover:border-cyan/20 transition-colors parallax-scale"
+               x-data="{ v: false }" x-intersect.once="v = true">
+            <div :class="v ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'"
+                 style="transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.1s">
+              <img src="assets/images/icons/icon-subscription.png" alt="" width="32" height="32" loading="lazy" class="w-8 h-8 mb-6 opacity-80">
+              <h3 class="font-display font-semibold text-lg text-white mb-2">Abonament lunar</h3>
+              <p class="text-silver text-sm leading-relaxed">Plata se retrage automat de pe card, fără alte costuri ascunse.</p>
+            </div>
+          </div>
+
+          <div class="bg-surface-2 rounded-2xl p-8 border border-edge hover:border-cyan/20 transition-colors parallax-scale"
+               x-data="{ v: false }" x-intersect.once="v = true">
+            <div :class="v ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'"
+                 style="transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s">
+              <img src="assets/images/icons/icon-technician.png" alt="" width="32" height="32" loading="lazy" class="w-8 h-8 mb-6 opacity-80">
+              <h3 class="font-display font-semibold text-lg text-white mb-2">Înlocuire filtru</h3>
+              <p class="text-silver text-sm leading-relaxed">Filtrul NSC se înlocuiește gratuit la fiecare 12 luni, iar echipamentul este igienizat periodic.</p>
+            </div>
+          </div>
+
+          <div class="bg-surface-2 rounded-2xl p-8 border border-edge hover:border-cyan/20 transition-colors parallax-scale"
+               x-data="{ v: false }" x-intersect.once="v = true">
+            <div :class="v ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'"
+                 style="transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.3s">
+              <svg class="w-8 h-8 text-cyan mb-6 opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182"/></svg>
+              <h3 class="font-display font-semibold text-lg text-white mb-2">Schimb butelie CO2</h3>
+              <p class="text-silver text-sm leading-relaxed">Butelia de CO2 se schimbă gratuit la fiecare 6 luni, în cadrul abonamentului.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- GALLERY — Asymmetric grid, awwwards style    -->
+    <!-- ============================================ -->
+    <section id="gallery" class="py-24 lg:py-40 bg-void">
+      <div class="max-w-[1800px] mx-auto px-5 sm:px-8 lg:px-12">
+
+        <div class="mb-16 lg:mb-24"
+             x-data="{ v: false }" x-intersect.once.half="v = true">
+          <div :class="v ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
+               style="transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1)">
+            <span class="text-huge font-display font-bold text-white/10">06</span>
+            <h2 class="text-display font-display font-bold text-white mt-2">Galerie</h2>
+          </div>
+        </div>
+
+        <!-- Asymmetric image grid -->
+        <div x-data="lightbox()" class="grid grid-cols-2 lg:grid-cols-12 gap-3 lg:gap-4">
+
+          <!-- Large image -->
+          <div class="col-span-2 lg:col-span-7 lg:row-span-2 parallax-scale">
+            <div class="relative rounded-2xl overflow-hidden bg-surface-2 aspect-[4/3] lg:aspect-auto lg:h-full cursor-pointer group"
+                 @click="open(0)">
+              <img src="assets/images/gallery/carbopurity-black-angle.jpg"
+                   alt="Carbopurity Black — vedere laterală"
+                   class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                   loading="lazy" decoding="async">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </div>
+          </div>
+
+          <!-- Top right -->
+          <div class="col-span-1 lg:col-span-5 parallax-scale">
+            <div class="relative rounded-2xl overflow-hidden bg-surface-2 aspect-square cursor-pointer group"
+                 @click="open(1)">
+              <img src="assets/images/gallery/carbopurity-black-detail.jpg"
+                   alt="Carbopurity Black — detaliu"
+                   class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                   loading="lazy" decoding="async">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </div>
+          </div>
+
+          <!-- Bottom right -->
+          <div class="col-span-1 lg:col-span-5 parallax-scale">
+            <div class="relative rounded-2xl overflow-hidden bg-surface-2 aspect-square cursor-pointer group"
+                 @click="open(2)">
+              <img src="assets/images/gallery/carbopurity-black-context.jpg"
+                   alt="Carbopurity Black — în context"
+                   class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                   loading="lazy" decoding="async">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </div>
+          </div>
+
+          <!-- Full width video -->
+          <div class="col-span-2 lg:col-span-12" x-data="{ videoLoaded: false }">
+            <div class="relative rounded-2xl overflow-hidden bg-surface-2 aspect-video cursor-pointer"
+                 @click="videoLoaded = true">
+              <template x-if="!videoLoaded">
+                <div class="relative w-full h-full">
+                  <img src="assets/images/gallery/video-thumb.jpg" alt="Video prezentare Carbopurity Black"
+                       class="w-full h-full object-cover" loading="lazy" decoding="async">
+                  <div class="absolute inset-0 flex items-center justify-center bg-black/30">
+                    <div class="w-20 h-20 rounded-full bg-cyan/90 hover:bg-cyan flex items-center justify-center transition-all hover:scale-110">
+                      <svg class="w-8 h-8 text-void ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                  </div>
+                </div>
+              </template>
+              <template x-if="videoLoaded">
+                <iframe src="https://www.youtube.com/embed/xZza2UV6d78?autoplay=1"
+                        class="w-full h-full" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen title="Video prezentare Carbopurity Black"></iframe>
+              </template>
+            </div>
+          </div>
+
+          <!-- Lightbox -->
+          <div x-show="isOpen" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+               x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
+               @keydown.escape.window="close()" @click.self="close()"
+               class="fixed inset-0 z-[100] bg-black/95 flex items-center justify-center p-4"
+               role="dialog" aria-modal="true" style="display: none;">
+            <button @click="close()" class="absolute top-4 right-4 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white z-10" aria-label="Închide">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+            <button @click="prev()" class="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white" aria-label="Anterior">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+            </button>
+            <button @click="next()" class="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white" aria-label="Următor">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </button>
+            <img :src="images[current]?.src" :alt="images[current]?.alt" class="max-h-[85vh] max-w-[90vw] object-contain"
+                 @touchstart.passive="ts = $event.changedTouches[0].screenX" @touchend="Math.abs(ts - $event.changedTouches[0].screenX) > 50 ? (ts - $event.changedTouches[0].screenX > 0 ? next() : prev()) : null">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- REVIEWS — Large quote style                  -->
+    <!-- ============================================ -->
+    <section class="py-24 lg:py-40 bg-surface relative overflow-hidden">
+      <!-- Background quote mark -->
+      <div class="absolute top-12 left-8 lg:left-16 text-[15rem] lg:text-[25rem] leading-none font-display font-bold text-white/[0.02] select-none pointer-events-none" aria-hidden="true">&ldquo;</div>
+
+      <div class="max-w-[1800px] mx-auto px-5 sm:px-8 lg:px-12">
+        <div x-data="{ current: 0, reviews: [
+               { text: 'Super. Merită toți banii.', author: 'Alexandru Radu', date: 'Decembrie 2025', verified: false },
+               { text: 'Un aparat excepțional. E tot ce trebuie. Silențios. Își face treaba cum trebuie. Are apă caldă, apă rece și apă carbonată. Merită abonamentul.', author: 'Ovidiu', date: 'Octombrie 2025', verified: true }
+             ] }"
+             class="relative" x-intersect.once="$el.classList.add('revealed')">
+
+          <template x-for="(review, i) in reviews" :key="i">
+            <div x-show="current === i" x-transition:enter="transition ease-out duration-500" x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0">
+              <blockquote class="max-w-4xl">
+                <div class="flex gap-1 mb-6" aria-label="5 din 5 stele">
+                  <template x-for="s in 5"><svg class="w-4 h-4 text-amber" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg></template>
+                </div>
+                <p class="text-2xl sm:text-3xl lg:text-4xl font-display font-medium leading-snug text-white" x-text="'&ldquo;' + review.text + '&rdquo;'"></p>
+                <footer class="mt-8 flex items-center gap-4">
+                  <cite class="not-italic font-display font-semibold text-white" x-text="review.author"></cite>
+                  <span class="text-muted text-sm" x-text="review.date"></span>
+                  <span x-show="review.verified" class="inline-flex items-center gap-1 text-teal text-xs">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    Achiziție verificată
+                  </span>
+                </footer>
+              </blockquote>
+            </div>
+          </template>
+
+          <!-- Nav dots -->
+          <div class="mt-12 flex items-center gap-3">
+            <template x-for="(_, i) in reviews" :key="i">
+              <button @click="current = i"
+                      :class="current === i ? 'bg-cyan w-8' : 'bg-edge w-3 hover:bg-silver'"
+                      class="h-3 rounded-full transition-all duration-300 min-w-[12px]"
+                      :aria-label="'Recenzia ' + (i+1)"></button>
+            </template>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- FAQ — Minimal accordion                      -->
+    <!-- ============================================ -->
+    <section id="faq" class="py-24 lg:py-40 bg-void">
+      <div class="max-w-[1800px] mx-auto px-5 sm:px-8 lg:px-12">
+
+        <div class="grid lg:grid-cols-12 gap-12 lg:gap-6">
+          <div class="lg:col-span-4 lg:sticky lg:top-32 lg:self-start"
+               x-data="{ v: false }" x-intersect.once="v = true">
+            <div :class="v ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
+                 style="transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1)">
+              <span class="text-huge font-display font-bold text-white/10">07</span>
+              <h2 class="text-display font-display font-bold text-white mt-2">Întrebări frecvente</h2>
+            </div>
+          </div>
+
+          <div class="lg:col-span-7 lg:col-start-6" x-data="{ openItem: null }">
+            <div class="divide-y divide-edge">
+
+              <div>
+                <button @click="openItem = openItem === 0 ? null : 0" :aria-expanded="openItem === 0" aria-controls="faq-0"
+                        class="w-full flex justify-between items-center py-6 text-left min-h-[56px]">
+                  <span class="font-display font-semibold text-lg text-white pr-4">Ce tipuri de apă oferă Carbopurity Black?</span>
+                  <svg :class="openItem === 0 ? 'rotate-45' : ''" class="w-5 h-5 text-cyan flex-shrink-0 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4.5v15m7.5-7.5h-15"/></svg>
+                </button>
+                <div x-show="openItem === 0" x-collapse id="faq-0" role="region">
+                  <p class="pb-6 text-silver leading-relaxed">Carbopurity Black oferă trei tipuri de apă: apă plată rece, apă fierbinte și apă carbogazificată.</p>
+                </div>
+              </div>
+
+              <div>
+                <button @click="openItem = openItem === 1 ? null : 1" :aria-expanded="openItem === 1" aria-controls="faq-1"
+                        class="w-full flex justify-between items-center py-6 text-left min-h-[56px]">
+                  <span class="font-display font-semibold text-lg text-white pr-4">Ce dimensiuni are aparatul?</span>
+                  <svg :class="openItem === 1 ? 'rotate-45' : ''" class="w-5 h-5 text-cyan flex-shrink-0 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4.5v15m7.5-7.5h-15"/></svg>
+                </button>
+                <div x-show="openItem === 1" x-collapse id="faq-1" role="region">
+                  <p class="pb-6 text-silver leading-relaxed">Aparatul are dimensiuni compacte: 23 cm lățime, 44 cm adâncime și 40 cm înălțime. Se potrivește pe orice blat de bucătărie.</p>
+                </div>
+              </div>
+
+              <div>
+                <button @click="openItem = openItem === 2 ? null : 2" :aria-expanded="openItem === 2" aria-controls="faq-2"
+                        class="w-full flex justify-between items-center py-6 text-left min-h-[56px]">
+                  <span class="font-display font-semibold text-lg text-white pr-4">Cum funcționează sistemul de filtrare?</span>
+                  <svg :class="openItem === 2 ? 'rotate-45' : ''" class="w-5 h-5 text-cyan flex-shrink-0 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4.5v15m7.5-7.5h-15"/></svg>
+                </button>
+                <div x-show="openItem === 2" x-collapse id="faq-2" role="region">
+                  <p class="pb-6 text-silver leading-relaxed">Apa este filtrată printr-un filtru NSC (combinat, multi-strat) care conține carbon activ și țesătură cu nano-argint. Acesta elimină compuși organici volatili, metale grele și clorul, oferind totodată protecție antimicrobiană. Filtrul are o capacitate de până la 5.600 de litri.</p>
+                </div>
+              </div>
+
+              <div>
+                <button @click="openItem = openItem === 3 ? null : 3" :aria-expanded="openItem === 3" aria-controls="faq-3"
+                        class="w-full flex justify-between items-center py-6 text-left min-h-[56px]">
+                  <span class="font-display font-semibold text-lg text-white pr-4">Apa filtrată mai păstrează mineralele?</span>
+                  <svg :class="openItem === 3 ? 'rotate-45' : ''" class="w-5 h-5 text-cyan flex-shrink-0 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4.5v15m7.5-7.5h-15"/></svg>
+                </button>
+                <div x-show="openItem === 3" x-collapse id="faq-3" role="region">
+                  <p class="pb-6 text-silver leading-relaxed">Da. Procesul de filtrare nu modifică duritatea apei și nu elimină mineralele. Apa își păstrează conținutul original de minerale de la sursa de alimentare.</p>
+                </div>
+              </div>
+
+              <div>
+                <button @click="openItem = openItem === 4 ? null : 4" :aria-expanded="openItem === 4" aria-controls="faq-4"
+                        class="w-full flex justify-between items-center py-6 text-left min-h-[56px]">
+                  <span class="font-display font-semibold text-lg text-white pr-4">Cât durează o butelie de CO2?</span>
+                  <svg :class="openItem === 4 ? 'rotate-45' : ''" class="w-5 h-5 text-cyan flex-shrink-0 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4.5v15m7.5-7.5h-15"/></svg>
+                </button>
+                <div x-show="openItem === 4" x-collapse id="faq-4" role="region">
+                  <p class="pb-6 text-silver leading-relaxed">O butelie de CO2 de 5 litri poate produce până la 600 de litri de apă carbogazificată. În cadrul abonamentului, butelia se schimbă gratuit la fiecare 6 luni.</p>
+                </div>
+              </div>
+
+              <div>
+                <button @click="openItem = openItem === 5 ? null : 5" :aria-expanded="openItem === 5" aria-controls="faq-5"
+                        class="w-full flex justify-between items-center py-6 text-left min-h-[56px]">
+                  <span class="font-display font-semibold text-lg text-white pr-4">Cine se ocupă de instalare și mentenanță?</span>
+                  <svg :class="openItem === 5 ? 'rotate-45' : ''" class="w-5 h-5 text-cyan flex-shrink-0 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4.5v15m7.5-7.5h-15"/></svg>
+                </button>
+                <div x-show="openItem === 5" x-collapse id="faq-5" role="region">
+                  <p class="pb-6 text-silver leading-relaxed">Instalarea și mentenanța sunt asigurate de echipa tehnică La Fântâna. Înlocuirea filtrului și igienizarea echipamentului sunt incluse în abonament.</p>
+                </div>
+              </div>
+
+              <div>
+                <button @click="openItem = openItem === 6 ? null : 6" :aria-expanded="openItem === 6" aria-controls="faq-6"
+                        class="w-full flex justify-between items-center py-6 text-left min-h-[56px]">
+                  <span class="font-display font-semibold text-lg text-white pr-4">Este aparatul sigur pentru copii?</span>
+                  <svg :class="openItem === 6 ? 'rotate-45' : ''" class="w-5 h-5 text-cyan flex-shrink-0 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4.5v15m7.5-7.5h-15"/></svg>
+                </button>
+                <div x-show="openItem === 6" x-collapse id="faq-6" role="region">
+                  <p class="pb-6 text-silver leading-relaxed">Da. Carbopurity Black dispune de o funcție de blocare care previne utilizarea accidentală de către copii.</p>
+                </div>
+              </div>
+
+              <div>
+                <button @click="openItem = openItem === 7 ? null : 7" :aria-expanded="openItem === 7" aria-controls="faq-7"
+                        class="w-full flex justify-between items-center py-6 text-left min-h-[56px]">
+                  <span class="font-display font-semibold text-lg text-white pr-4">Ce presiune a apei este necesară?</span>
+                  <svg :class="openItem === 7 ? 'rotate-45' : ''" class="w-5 h-5 text-cyan flex-shrink-0 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4.5v15m7.5-7.5h-15"/></svg>
+                </button>
+                <div x-show="openItem === 7" x-collapse id="faq-7" role="region">
+                  <p class="pb-6 text-silver leading-relaxed">Rețeaua de apă din locație trebuie să asigure o presiune minimă de 2 bari pentru funcționarea corectă a echipamentului.</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- CLOSING — Big statement CTA                  -->
+    <!-- ============================================ -->
+    <section id="contact" class="relative py-32 lg:py-48 bg-surface overflow-hidden">
+      <!-- Large background text -->
+      <div class="absolute inset-0 flex items-center justify-center pointer-events-none select-none" aria-hidden="true">
+        <span class="text-[20vw] font-display font-bold text-white/[0.02] whitespace-nowrap">CARBOPURITY</span>
+      </div>
+
+      <div class="relative max-w-4xl mx-auto px-5 sm:px-8 lg:px-12 text-center"
+           x-data="{ v: false }" x-intersect.once="v = true">
+        <div :class="v ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'"
+             style="transition: all 1s cubic-bezier(0.16, 1, 0.3, 1)">
+
+          <h2 class="text-huge font-display font-bold text-white mb-8">Vrei să afli<br>mai multe?</h2>
+          <p class="text-xl text-silver leading-relaxed max-w-2xl mx-auto mb-12">
+            Programează o sesiune de consultanță gratuită cu un specialist La Fântâna. Echipa noastră îți poate oferi informații detaliate despre Carbopurity Black.
+          </p>
+
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="https://lafantana.ro/ro/watercooler-cu-filtre-apa-carbopurity-black.html"
+               target="_blank" rel="noopener noreferrer"
+               class="inline-flex items-center justify-center px-10 py-5 text-sm font-display font-semibold text-void bg-cyan hover:bg-cyan/90 rounded-full transition-all hover:scale-105 min-h-[56px]">
+              Solicită informații
+            </a>
+            <a href="tel:0212007200"
+               class="inline-flex items-center justify-center px-10 py-5 text-sm font-display font-semibold text-white border border-edge hover:border-silver rounded-full transition-colors min-h-[56px]">
+              <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/></svg>
+              021 200 72 00
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================ -->
+  <!-- FOOTER — Minimal                             -->
+  <!-- ============================================ -->
+  <footer class="border-t border-edge bg-void py-12">
+    <div class="max-w-[1800px] mx-auto px-5 sm:px-8 lg:px-12">
+      <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
+        <div>
+          <p class="font-display font-medium text-white mb-1">La Fântâna</p>
+          <p class="text-xs text-muted">Pagină de prezentare — informații actualizate pe <a href="https://lafantana.ro" target="_blank" rel="noopener noreferrer" class="text-silver hover:text-white underline transition-colors">lafantana.ro</a></p>
+        </div>
+        <div class="flex items-center gap-8 text-xs text-muted">
+          <a href="#specs" class="hover:text-white transition-colors">Specificații</a>
+          <a href="#gallery" class="hover:text-white transition-colors">Galerie</a>
+          <a href="#faq" class="hover:text-white transition-colors">FAQ</a>
+          <a href="#contact" class="hover:text-white transition-colors">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================ -->
+  <!-- ALPINE.JS APP                                -->
+  <!-- ============================================ -->
+  <script>
+    function app() {
+      return {
+        cursorX: 0,
+        cursorY: 0,
+        isMobile: window.innerWidth < 1024,
+        init() {
+          if (!this.isMobile) {
+            window.addEventListener('mousemove', (e) => {
+              this.cursorX = e.clientX;
+              this.cursorY = e.clientY;
+            }, { passive: true });
+          }
+          window.addEventListener('resize', () => {
+            this.isMobile = window.innerWidth < 1024;
+          }, { passive: true });
+        }
+      }
+    }
+
+    function lightbox() {
+      return {
+        isOpen: false,
+        current: 0,
+        ts: 0,
+        images: [
+          { src: 'assets/images/gallery/carbopurity-black-angle.jpg', alt: 'Carbopurity Black — vedere laterală' },
+          { src: 'assets/images/gallery/carbopurity-black-detail.jpg', alt: 'Carbopurity Black — detaliu' },
+          { src: 'assets/images/gallery/carbopurity-black-context.jpg', alt: 'Carbopurity Black — în context' },
+        ],
+        open(i) { this.current = i; this.isOpen = true; document.body.style.overflow = 'hidden'; },
+        close() { this.isOpen = false; document.body.style.overflow = ''; },
+        next() { this.current = (this.current + 1) % this.images.length; },
+        prev() { this.current = (this.current - 1 + this.images.length) % this.images.length; },
+      }
+    }
+  </script>
+
+</body>
+</html>

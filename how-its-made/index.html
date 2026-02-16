@@ -1,0 +1,526 @@
+<!doctype html>
+<html lang="ro">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Cum a fost construit — Carbopurity Black</title>
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+        <script
+            defer
+            src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+        ></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+            rel="stylesheet"
+        />
+        <style type="text/tailwindcss">
+            @theme {
+                --font-sans: "Inter", system-ui, sans-serif;
+                --font-mono: "JetBrains Mono", ui-monospace, monospace;
+            }
+        </style>
+    </head>
+    <body class="bg-[#0A0A0A] text-white font-sans antialiased min-h-screen">
+        <div class="max-w-3xl mx-auto px-5 py-16 space-y-16">
+            <!-- Back link -->
+            <a
+                href="/"
+                class="inline-flex items-center gap-2 text-sm text-[#666] hover:text-white transition-colors"
+            >
+                <svg
+                    class="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="1.5"
+                        d="M19.5 12h-15m0 0l6.75 6.75M4.5 12l6.75-6.75"
+                    />
+                </svg>
+                Înapoi la versiuni
+            </a>
+
+            <!-- Header -->
+            <header class="space-y-4">
+                <p
+                    class="text-xs font-medium tracking-[0.2em] uppercase text-[#30C6FF]"
+                >
+                    Behind the scenes
+                </p>
+                <h1 class="text-3xl sm:text-4xl font-bold tracking-tight">
+                    Cum a construit un agent AI acest minisite
+                </h1>
+                <p class="text-[#999] text-base leading-relaxed">
+                    Toate cele 5 versiuni ale paginii de prezentare Carbopurity
+                    Black au fost create de
+                    <a
+                        href="https://claude.ai/claude-code"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="text-[#30C6FF] hover:underline"
+                        >Claude Code</a
+                    >, un agent AI de la Anthropic, pe baza unui singur prompt
+                    detaliat.
+                </p>
+            </header>
+
+            <!-- Timeline -->
+            <section class="space-y-12">
+                <!-- Step 1 -->
+                <div class="relative pl-8 border-l border-white/10">
+                    <div
+                        class="absolute left-0 top-1 w-2 h-2 rounded-full bg-[#30C6FF] -translate-x-[calc(50%+0.5px)]"
+                    ></div>
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-3">
+                            <span class="text-xs font-mono text-[#30C6FF]"
+                                >01</span
+                            >
+                            <h2 class="text-lg font-semibold">
+                                Promptul initial
+                            </h2>
+                        </div>
+                        <p class="text-sm text-[#999] leading-relaxed">
+                            Totul a pornit de la un prompt detaliat care descria
+                            exact ce trebuie construit: o pagină de prezentare
+                            premium, mobile-first, pentru watercooler-ul
+                            Carbopurity Black de la La Fântâna. Promptul a
+                            specificat tech-stack, structura secțiunilor,
+                            regulile de ton și copy, cerințele de accesibilitate
+                            și performanță.
+                        </p>
+
+                        <!-- Show more prompt -->
+                        <div x-data="{ expanded: false }" class="mt-4">
+                            <button
+                                @click="expanded = !expanded"
+                                class="inline-flex items-center gap-2 text-sm font-medium text-[#30C6FF] hover:text-white transition-colors cursor-pointer"
+                            >
+                                <span
+                                    x-text="expanded ? 'Ascunde promptul' : 'Vezi promptul complet'"
+                                ></span>
+                                <svg
+                                    class="w-4 h-4 transition-transform"
+                                    :class="expanded && 'rotate-180'"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="1.5"
+                                        d="M19.5 8.25l-7.5 7.5-7.5-7.5"
+                                    />
+                                </svg>
+                            </button>
+                            <div
+                                x-show="expanded"
+                                x-transition.opacity.duration.300ms
+                                class="mt-4 bg-[#111] border border-white/5 rounded-xl p-5 overflow-x-auto"
+                            >
+                                <pre
+                                    class="text-xs font-mono text-[#AAA] leading-relaxed whitespace-pre-wrap break-words"
+                                >
+You are a senior frontend engineer + product web designer.
+
+  Build a premium, mobile-first product presentation minisite from this source page:
+  https://lafantana.ro/ro/watercooler-cu-filtre-apa-carbopurity-black.html
+
+  Core objective:
+  - Transform the product detail page into a high-quality single-page minisite.
+  - This is a presentation page, not a sales page.
+  - Use factual content and images from the source page.
+  - Re-structure content into sections typical for strong D2C product pages.
+
+  Tech constraints:
+  - Tailwind CSS v4 for styling.
+  - Alpine.js for interactions.
+  - Keep the implementation lightweight and production-ready.
+  - Prefer semantic HTML and minimal custom CSS.
+  - Mobile-first approach is mandatory.
+
+  Process:
+  1. Crawl and extract from the source page:
+  - Product title/subtitle
+  - Key benefits and feature descriptions
+  - Technical specifications
+  - Any filtration/process details
+  - Usage/maintenance details (if available)
+  - All relevant product images/media
+  2. Build a content map that shows which source content is used in each new section.
+  3. Design and implement a polished minisite with strong visual hierarchy and modern spacing.
+  4. Optimize for mobile first, then scale to tablet/desktop.
+
+  Required section flow (adapt based on available source data):
+  - Hero (clear product identity + strongest image)
+  - Product overview
+  - Why it matters / key benefits
+  - How it works (filtration/process explanation)
+  - Feature highlights
+  - Technical specs (clean table)
+  - Usage + maintenance
+  - Gallery / product in context
+  - FAQ
+  - Closing section (informational CTA, no hard sell)
+
+  Interaction requirements (Alpine.js):
+  - Mobile-friendly image gallery with swipe-friendly behavior
+  - FAQ accordion
+  - Sticky in-page section navigation with active state
+  - Optional spec toggles/tabs if useful
+
+  Copy and tone rules:
+  - Keep language consistent with source content (Romanian by default).
+  - Rewrite for clarity and flow, but do not invent claims/specs/certifications.
+  - Keep tone confident, modern, informative, and calm.
+  - Avoid aggressive sales language, urgency, discounts, scarcity, or checkout-style CTAs.
+  - Avoid staccato slogan patterns like:
+    - "All the X. None of the Y."
+    - "It's not X. It's Y."
+    - "No X. No Y. No Z."
+    - repeated adjective fragments like "Simple. Fast. Clean."
+  - Prefer smooth, natural sentences.
+
+  Mobile UX requirements:
+  - Design primarily for 360–430px widths.
+  - Tap targets >= 44px.
+  - Avoid horizontal scroll.
+  - Keep key content visible early without overwhelming the user.
+  - Ensure fast perceived load and readable typography on small screens.
+
+  Performance + accessibility:
+  - Compress/serve optimized images (lazy-load below the fold).
+  - Proper heading structure, alt text, labels, and keyboard-friendly interactions.
+  - Good color contrast and focus states.
+
+  Deliverables:
+  - Working page implementation
+  - Extracted/optimized image assets
+  - content-map.md mapping source -> section usage
+  - Short README.md with run instructions and decisions made
+
+  Quality gate before finishing:
+  - Verify all factual statements trace to the source page.
+  - Verify mobile layout and interactions on small viewport.
+  - Verify no sales-page patterns slipped into copy.
+
+SPAWN A TEAM OF AGENTS: CREATIVE DIRECTOR, DEVELOPER AND MARKETER TO PLAN THE IMPLEMENTATION</pre
+                                >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="relative pl-8 border-l border-white/10">
+                    <div
+                        class="absolute left-0 top-1 w-2 h-2 rounded-full bg-[#30C6FF] -translate-x-[calc(50%+0.5px)]"
+                    ></div>
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-3">
+                            <span class="text-xs font-mono text-[#30C6FF]"
+                                >02</span
+                            >
+                            <h2 class="text-lg font-semibold">
+                                Echipa de agenți
+                            </h2>
+                        </div>
+                        <p class="text-sm text-[#999] leading-relaxed">
+                            Claude Code a creat o echipă de 3 agenți
+                            specializați care au lucrat în paralel pentru a
+                            planifica implementarea:
+                        </p>
+                        <div class="grid sm:grid-cols-3 gap-3 mt-2">
+                            <div
+                                class="bg-[#141414] border border-white/5 rounded-xl p-4 space-y-2"
+                            >
+                                <div
+                                    class="w-8 h-8 rounded-lg bg-[#30C6FF]/10 flex items-center justify-center text-[#30C6FF] text-sm"
+                                >
+                                    CD
+                                </div>
+                                <h3 class="text-sm font-semibold">
+                                    Creative Director
+                                </h3>
+                                <p class="text-xs text-[#666] leading-relaxed">
+                                    A definit paleta de culori, tipografia,
+                                    grid-ul și ierarhia vizuală a fiecărei
+                                    secțiuni.
+                                </p>
+                            </div>
+                            <div
+                                class="bg-[#141414] border border-white/5 rounded-xl p-4 space-y-2"
+                            >
+                                <div
+                                    class="w-8 h-8 rounded-lg bg-[#30C6FF]/10 flex items-center justify-center text-[#30C6FF] text-sm"
+                                >
+                                    DV
+                                </div>
+                                <h3 class="text-sm font-semibold">Developer</h3>
+                                <p class="text-xs text-[#666] leading-relaxed">
+                                    A planificat arhitectura tehnică: Tailwind
+                                    v4, Alpine.js, lazy loading, animații și
+                                    performanță.
+                                </p>
+                            </div>
+                            <div
+                                class="bg-[#141414] border border-white/5 rounded-xl p-4 space-y-2"
+                            >
+                                <div
+                                    class="w-8 h-8 rounded-lg bg-[#30C6FF]/10 flex items-center justify-center text-[#30C6FF] text-sm"
+                                >
+                                    MK
+                                </div>
+                                <h3 class="text-sm font-semibold">Marketer</h3>
+                                <p class="text-xs text-[#666] leading-relaxed">
+                                    A creat strategia de conținut, tonul vocii
+                                    și structura narativă a paginii.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="relative pl-8 border-l border-white/10">
+                    <div
+                        class="absolute left-0 top-1 w-2 h-2 rounded-full bg-[#30C6FF] -translate-x-[calc(50%+0.5px)]"
+                    ></div>
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-3">
+                            <span class="text-xs font-mono text-[#30C6FF]"
+                                >03</span
+                            >
+                            <h2 class="text-lg font-semibold">
+                                Extragerea conținutului
+                            </h2>
+                        </div>
+                        <p class="text-sm text-[#999] leading-relaxed">
+                            Agentul a accesat pagina sursă de pe lafantana.ro și
+                            a extras: titlul produsului, beneficiile,
+                            specificațiile tehnice, detaliile despre procesul de
+                            filtrare și 21 de imagini (hero, galerie, iconuri,
+                            specificații). A creat apoi un
+                            <span class="font-mono text-[#666]"
+                                >content-map.md</span
+                            >
+                            care mapează fiecare element extras la secțiunea
+                            corespunzătoare din minisite.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="relative pl-8 border-l border-white/10">
+                    <div
+                        class="absolute left-0 top-1 w-2 h-2 rounded-full bg-[#30C6FF] -translate-x-[calc(50%+0.5px)]"
+                    ></div>
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-3">
+                            <span class="text-xs font-mono text-[#30C6FF]"
+                                >04</span
+                            >
+                            <h2 class="text-lg font-semibold">
+                                Implementarea V1
+                            </h2>
+                        </div>
+                        <p class="text-sm text-[#999] leading-relaxed">
+                            Pe baza planurilor celor 3 agenți, Claude Code a
+                            generat un fișier HTML complet (~1100 linii) cu:
+                            navigare sticky cu stare activă, galerie cu lightbox
+                            și swipe, FAQ accordion, specificații expandabile,
+                            lazy-load pentru YouTube embed, și animații de
+                            scroll reveal. Totul într-un singur fișier, folosind
+                            Tailwind CSS v4 (CDN) și Alpine.js.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Step 5 -->
+                <div class="relative pl-8 border-l border-white/10">
+                    <div
+                        class="absolute left-0 top-1 w-2 h-2 rounded-full bg-[#30C6FF] -translate-x-[calc(50%+0.5px)]"
+                    ></div>
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-3">
+                            <span class="text-xs font-mono text-[#30C6FF]"
+                                >05</span
+                            >
+                            <h2 class="text-lg font-semibold">
+                                Iterații și variante
+                            </h2>
+                        </div>
+                        <p class="text-sm text-[#999] leading-relaxed">
+                            După V1, au urmat 4 variante suplimentare, fiecare
+                            cu un stil vizual diferit:
+                        </p>
+                        <div class="space-y-2 mt-2">
+                            <div class="flex items-start gap-3 text-sm">
+                                <span
+                                    class="text-[#30C6FF] font-mono text-xs mt-0.5 w-6 shrink-0"
+                                    >V2</span
+                                >
+                                <p class="text-[#999]">
+                                    <span class="text-white"
+                                        >Editorial & Bold</span
+                                    >
+                                    — Tipografie oversized cu Space Grotesk,
+                                    marquee, parallax CSS, cursor custom,
+                                    textură grain. Inspirat de awwwards și Art
+                                    Lebedev.
+                                </p>
+                            </div>
+                            <div class="flex items-start gap-3 text-sm">
+                                <span
+                                    class="text-[#30C6FF] font-mono text-xs mt-0.5 w-6 shrink-0"
+                                    >V3</span
+                                >
+                                <p class="text-[#999]">
+                                    <span class="text-white">Paper & Ink</span>
+                                    — Temă light cu tonuri calde, Manrope +
+                                    Sora, estetică editorială organică.
+                                </p>
+                            </div>
+                            <div class="flex items-start gap-3 text-sm">
+                                <span
+                                    class="text-[#30C6FF] font-mono text-xs mt-0.5 w-6 shrink-0"
+                                    >V4</span
+                                >
+                                <p class="text-[#999]">
+                                    <span class="text-white"
+                                        >Deep Black & Bento</span
+                                    >
+                                    — Negru pur, layout bento grid, secțiune
+                                    "Trinity", selecție cyan glow.
+                                </p>
+                            </div>
+                            <div class="flex items-start gap-3 text-sm">
+                                <span
+                                    class="text-[#30C6FF] font-mono text-xs mt-0.5 w-6 shrink-0"
+                                    >V5</span
+                                >
+                                <p class="text-[#999]">
+                                    <span class="text-white"
+                                        >White & Minimal</span
+                                    >
+                                    — Fundal alb, estetică Apple-like, accent pe
+                                    claritate și spațiu.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 6 -->
+                <div class="relative pl-8 border-l border-white/10">
+                    <div
+                        class="absolute left-0 top-1 w-2 h-2 rounded-full bg-[#30C6FF] -translate-x-[calc(50%+0.5px)]"
+                    ></div>
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-3">
+                            <span class="text-xs font-mono text-[#30C6FF]"
+                                >06</span
+                            >
+                            <h2 class="text-lg font-semibold">
+                                Deploy pe Cloudflare Pages
+                            </h2>
+                        </div>
+                        <p class="text-sm text-[#999] leading-relaxed">
+                            Fiecare versiune a fost publicată automat pe
+                            Cloudflare Pages folosind CLI-ul
+                            <span class="font-mono text-[#666]">wrangler</span>,
+                            direct din terminal, fără pipeline CI/CD. Agentul a
+                            gestionat crearea proiectelor, upload-ul fișierelor
+                            și verificarea deploy-urilor.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tech stack -->
+            <section class="space-y-6">
+                <h2 class="text-xl font-semibold">Tech Stack</h2>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                    <div
+                        class="bg-[#141414] border border-white/5 rounded-xl p-4 text-center space-y-1"
+                    >
+                        <p class="text-sm font-semibold">Tailwind v4</p>
+                        <p class="text-xs text-[#666]">Styling</p>
+                    </div>
+                    <div
+                        class="bg-[#141414] border border-white/5 rounded-xl p-4 text-center space-y-1"
+                    >
+                        <p class="text-sm font-semibold">Alpine.js</p>
+                        <p class="text-xs text-[#666]">Interacțiuni</p>
+                    </div>
+                    <div
+                        class="bg-[#141414] border border-white/5 rounded-xl p-4 text-center space-y-1"
+                    >
+                        <p class="text-sm font-semibold">Cloudflare</p>
+                        <p class="text-xs text-[#666]">Hosting</p>
+                    </div>
+                    <div
+                        class="bg-[#141414] border border-white/5 rounded-xl p-4 text-center space-y-1"
+                    >
+                        <p class="text-sm font-semibold">Claude Code</p>
+                        <p class="text-xs text-[#666]">Agent AI</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Stats -->
+            <section
+                class="bg-[#141414] border border-white/5 rounded-2xl p-6 sm:p-8"
+            >
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
+                    <div>
+                        <p class="text-2xl font-bold text-[#30C6FF]">5</p>
+                        <p class="text-xs text-[#666] mt-1">versiuni create</p>
+                    </div>
+                    <div>
+                        <p class="text-2xl font-bold text-[#30C6FF]">21</p>
+                        <p class="text-xs text-[#666] mt-1">imagini extrase</p>
+                    </div>
+                    <div>
+                        <p class="text-2xl font-bold text-[#30C6FF]">3</p>
+                        <p class="text-xs text-[#666] mt-1">agenți paraleli</p>
+                    </div>
+                    <div>
+                        <p class="text-2xl font-bold text-[#30C6FF]">0</p>
+                        <p class="text-xs text-[#666] mt-1">
+                            linii scrise manual
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <footer
+                class="pt-4 border-t border-white/5 flex items-center justify-between text-xs text-[#444]"
+            >
+                <p>
+                    Construit cu
+                    <a
+                        href="https://claude.ai/claude-code"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="text-[#666] hover:text-white underline transition-colors"
+                        >Claude Code</a
+                    >
+                    (Anthropic)
+                </p>
+                <a
+                    href="/"
+                    class="text-[#666] hover:text-white transition-colors"
+                    >Toate versiunile &rarr;</a
+                >
+            </footer>
+        </div>
+    </body>
+</html>

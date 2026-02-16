@@ -1,0 +1,1596 @@
+<!doctype html>
+<html lang="ro" class="scroll-smooth">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Carbopurity Black - Minisite de prezentare | La Fantana</title>
+        <meta
+            name="description"
+            content="Carbopurity Black este un watercooler compact cu filtrare NSC, sterilizare UV si apa rece, fierbinte sau carbogazificata. Design premium, prezentare completa a functiilor si serviciilor incluse."
+        />
+        <meta
+            property="og:title"
+            content="Carbopurity Black - Minisite de prezentare"
+        />
+        <meta
+            property="og:description"
+            content="Exploreaza designul, procesul de filtrare, specificatiile tehnice si serviciile incluse pentru Carbopurity Black."
+        />
+        <meta
+            property="og:image"
+            content="assets/images/hero/carbopurity-black-main.png"
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:locale" content="ro_RO" />
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap"
+            rel="stylesheet"
+        />
+
+        <link
+            rel="preload"
+            as="image"
+            href="assets/images/hero/carbopurity-black-main.png"
+        />
+
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+        <script
+            defer
+            src="https://cdn.jsdelivr.net/npm/@alpinejs/intersect@3.x.x/dist/cdn.min.js"
+        ></script>
+        <script
+            defer
+            src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"
+        ></script>
+        <script
+            defer
+            src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+        ></script>
+
+        <style type="text/tailwindcss">
+            @theme {
+                --font-sans: "Manrope", ui-sans-serif, sans-serif;
+                --font-display: "Sora", ui-sans-serif, sans-serif;
+
+                --color-ink: #11141a;
+                --color-muted: #5b6678;
+                --color-paper: #f6f3ee;
+                --color-mist: #eaf0f4;
+                --color-white: #ffffff;
+                --color-slate: #1b2330;
+                --color-deep: #0f1622;
+                --color-cyan: #00b7d9;
+                --color-cyan-strong: #0093ae;
+                --color-cyan-soft: #d7f5fa;
+                --color-lime: #a2d33b;
+                --color-line: #d8dee8;
+            }
+        </style>
+
+        <style>
+            .grain {
+                background-image: radial-gradient(
+                    circle at 1px 1px,
+                    rgba(17, 20, 26, 0.05) 1px,
+                    transparent 0
+                );
+                background-size: 20px 20px;
+            }
+
+            .soft-shadow {
+                box-shadow: 0 20px 60px rgba(15, 22, 34, 0.12);
+            }
+
+            .scrollbar-hide::-webkit-scrollbar {
+                display: none;
+            }
+
+            .scrollbar-hide {
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+            }
+
+            @media (prefers-reduced-motion: reduce) {
+                * {
+                    animation-duration: 0.01ms !important;
+                    transition-duration: 0.01ms !important;
+                    scroll-behavior: auto !important;
+                }
+            }
+        </style>
+    </head>
+    <body class="bg-paper text-ink antialiased" x-data="minisite()">
+        <div
+            class="fixed inset-x-0 top-0 z-50 border-b border-ink/5 backdrop-blur-xl"
+            :class="isScrolled ? 'bg-paper/90' : 'bg-paper/70'"
+        >
+            <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div class="flex h-16 items-center gap-3 sm:gap-6">
+                    <a
+                        href="#hero"
+                        @click.prevent="scrollTo('hero')"
+                        class="font-display text-sm font-semibold tracking-[0.14em] uppercase text-ink"
+                    >
+                        La Fantana
+                    </a>
+
+                    <p
+                        class="hidden sm:block text-sm text-muted"
+                        :class="isScrolled ? 'opacity-100' : 'opacity-0'"
+                    >
+                        Carbopurity Black
+                    </p>
+
+                    <a
+                        href="#contact"
+                        @click.prevent="scrollTo('contact')"
+                        class="ml-auto inline-flex min-h-11 items-center rounded-full border border-ink/10 bg-white px-4 text-sm font-semibold text-ink transition hover:border-cyan hover:text-cyan focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan"
+                    >
+                        Contact
+                    </a>
+                </div>
+            </div>
+
+            <div class="border-t border-ink/5 bg-white/60">
+                <div
+                    class="mx-auto flex max-w-7xl gap-1 overflow-x-auto scrollbar-hide px-4 py-2 sm:px-6 lg:px-8"
+                    role="navigation"
+                    aria-label="Navigare sectiuni"
+                >
+                    <template x-for="section in sections" :key="section.id">
+                        <a
+                            :href="'#' + section.id"
+                            @click.prevent="scrollTo(section.id)"
+                            :class="activeSection === section.id ? 'bg-deep text-white' : 'bg-white text-muted hover:text-ink'"
+                            class="whitespace-nowrap rounded-full px-3 py-2 text-xs font-semibold transition min-h-10 inline-flex items-center"
+                        >
+                            <span x-text="section.label"></span>
+                        </a>
+                    </template>
+                </div>
+            </div>
+        </div>
+
+        <main class="pt-64">
+            <section id="hero" class="relative overflow-hidden">
+                <div class="pointer-events-none absolute inset-0">
+                    <div
+                        class="absolute -left-24 top-8 h-64 w-64 rounded-full bg-cyan/20 blur-3xl"
+                    ></div>
+                    <div
+                        class="absolute right-0 top-16 h-72 w-72 rounded-full bg-lime/15 blur-3xl"
+                    ></div>
+                    <div class="absolute inset-0 grain opacity-40"></div>
+                </div>
+
+                <div
+                    class="relative mx-auto grid max-w-7xl gap-10 px-4 pb-16 sm:px-6 md:pb-20 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:px-8 lg:pb-24"
+                >
+                    <div class="order-2 space-y-6 lg:order-1">
+                        <p
+                            class="font-display text-xs font-semibold uppercase tracking-[0.18em] text-cyan-strong"
+                        >
+                            Sistem de apa premium
+                        </p>
+                        <h1
+                            class="font-display text-4xl font-semibold leading-tight sm:text-5xl lg:text-6xl"
+                        >
+                            Carbopurity Black aduce apa filtrata in ritmul casei
+                            tale.
+                        </h1>
+                        <p
+                            class="max-w-xl text-base leading-relaxed text-muted sm:text-lg"
+                        >
+                            Este un watercooler compact, conectat la reteaua de
+                            apa, care livreaza apa rece, fierbinte sau
+                            carbogazificata printr-un sistem de filtrare NSC cu
+                            protectie UV in zona robinetului.
+                        </p>
+
+                        <div class="flex flex-col gap-3 sm:flex-row">
+                            <a
+                                href="#overview"
+                                @click.prevent="scrollTo('overview')"
+                                class="inline-flex min-h-12 items-center justify-center rounded-full bg-deep px-6 text-sm font-semibold text-white transition hover:bg-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan"
+                            >
+                                Exploreaza produsul
+                            </a>
+                            <a
+                                href="#specs"
+                                @click.prevent="scrollTo('specs')"
+                                class="inline-flex min-h-12 items-center justify-center rounded-full border border-ink/15 bg-white px-6 text-sm font-semibold text-ink transition hover:border-cyan hover:text-cyan focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan"
+                            >
+                                Vezi specificatiile
+                            </a>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-3 sm:grid-cols-4">
+                            <article
+                                class="rounded-2xl border border-ink/10 bg-white p-3"
+                            >
+                                <p
+                                    class="text-[11px] uppercase tracking-[0.12em] text-muted"
+                                >
+                                    Tipuri apa
+                                </p>
+                                <p class="mt-1 text-sm font-semibold">
+                                    Rece, fierbinte, carbo
+                                </p>
+                            </article>
+                            <article
+                                class="rounded-2xl border border-ink/10 bg-white p-3"
+                            >
+                                <p
+                                    class="text-[11px] uppercase tracking-[0.12em] text-muted"
+                                >
+                                    Filtrare
+                                </p>
+                                <p class="mt-1 text-sm font-semibold">
+                                    NSC multi-strat
+                                </p>
+                            </article>
+                            <article
+                                class="rounded-2xl border border-ink/10 bg-white p-3"
+                            >
+                                <p
+                                    class="text-[11px] uppercase tracking-[0.12em] text-muted"
+                                >
+                                    Sterilizare
+                                </p>
+                                <p class="mt-1 text-sm font-semibold">
+                                    UV la robinet
+                                </p>
+                            </article>
+                            <article
+                                class="rounded-2xl border border-ink/10 bg-white p-3"
+                            >
+                                <p
+                                    class="text-[11px] uppercase tracking-[0.12em] text-muted"
+                                >
+                                    Format
+                                </p>
+                                <p class="mt-1 text-sm font-semibold">
+                                    23 x 44 x 40 cm
+                                </p>
+                            </article>
+                        </div>
+                    </div>
+
+                    <div class="order-1 lg:order-2">
+                        <div
+                            class="relative mx-auto max-w-[420px] rounded-[2rem] border border-ink/10 bg-gradient-to-b from-white to-mist p-5 soft-shadow sm:p-8"
+                        >
+                            <div
+                                class="absolute left-6 top-6 rounded-full bg-white px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.1em] text-muted"
+                            >
+                                Design compact
+                            </div>
+                            <img
+                                src="assets/images/hero/carbopurity-black-main.png"
+                                alt="Carbopurity Black, vedere frontala"
+                                width="900"
+                                height="900"
+                                class="mx-auto mt-5 w-full max-w-[340px] drop-shadow-[0_22px_35px_rgba(15,22,34,0.24)]"
+                                fetchpriority="high"
+                                loading="eager"
+                                decoding="async"
+                            />
+                            <div
+                                class="mt-5 rounded-2xl bg-deep p-4 text-white"
+                            >
+                                <p class="text-sm font-semibold">
+                                    Butelie CO2 de 5L inclusa
+                                </p>
+                                <p class="mt-1 text-sm text-white/75">
+                                    Asigura pana la 600L de apa carbogazificata
+                                    si este schimbata gratuit la 6 luni in
+                                    abonament.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="overview" class="bg-white py-16 sm:py-20">
+                <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                    <div
+                        class="max-w-2xl"
+                        x-data="{ visible: false }"
+                        x-intersect.once="visible = true"
+                    >
+                        <h2
+                            class="font-display text-3xl font-semibold leading-tight transition duration-700 sm:text-4xl"
+                            :class="visible ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'"
+                        >
+                            Un produs gandit pentru utilizare zilnica, cu aspect
+                            curat si control simplu.
+                        </h2>
+                        <p
+                            class="mt-4 text-base leading-relaxed text-muted transition duration-700 delay-100 sm:text-lg"
+                            :class="visible ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'"
+                        >
+                            Carbopurity Black economiseste spatiu pe blat si
+                            reduce dependenta de sticle imbuteliate, oferind
+                            acces constant la apa filtrata direct din reteaua
+                            locala.
+                        </p>
+                    </div>
+
+                    <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                        <article
+                            class="rounded-3xl border border-line bg-paper p-6 transition duration-700"
+                            x-data="{ visible: false }"
+                            x-intersect.once="visible = true"
+                            :class="visible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'"
+                        >
+                            <div
+                                class="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-cyan-soft"
+                            >
+                                <img
+                                    src="assets/images/icons/icon-filtered-water.png"
+                                    alt=""
+                                    width="40"
+                                    height="40"
+                                    class="h-7 w-7"
+                                    loading="lazy"
+                                    decoding="async"
+                                />
+                            </div>
+                            <h3 class="text-lg font-semibold">
+                                Filtrare NSC cu protectie antimicrobiana
+                            </h3>
+                            <p class="mt-2 text-sm leading-relaxed text-muted">
+                                Filtrul combina carbon activ cu tesatura cu
+                                nano-argint, elimina clorul si impuritatile
+                                uzuale si pastreaza mineralele din apa.
+                            </p>
+                        </article>
+
+                        <article
+                            class="rounded-3xl border border-line bg-paper p-6 transition duration-700 delay-100"
+                            x-data="{ visible: false }"
+                            x-intersect.once="visible = true"
+                            :class="visible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'"
+                        >
+                            <div
+                                class="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-cyan-soft"
+                            >
+                                <img
+                                    src="assets/images/icons/icon-hot-cold.png"
+                                    alt=""
+                                    width="40"
+                                    height="40"
+                                    class="h-7 w-7"
+                                    loading="lazy"
+                                    decoding="async"
+                                />
+                            </div>
+                            <h3 class="text-lg font-semibold">
+                                Trei tipuri de apa, acelasi punct de servire
+                            </h3>
+                            <p class="mt-2 text-sm leading-relaxed text-muted">
+                                Selectezi apa rece, fierbinte sau
+                                carbogazificata direct din panoul aparatului,
+                                fara accesorii separate.
+                            </p>
+                        </article>
+
+                        <article
+                            class="rounded-3xl border border-line bg-paper p-6 transition duration-700 delay-200 sm:col-span-2 lg:col-span-1"
+                            x-data="{ visible: false }"
+                            x-intersect.once="visible = true"
+                            :class="visible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'"
+                        >
+                            <div
+                                class="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-cyan-soft"
+                            >
+                                <img
+                                    src="assets/images/icons/icon-no-pet.png"
+                                    alt=""
+                                    width="40"
+                                    height="40"
+                                    class="h-7 w-7"
+                                    loading="lazy"
+                                    decoding="async"
+                                />
+                            </div>
+                            <h3 class="text-lg font-semibold">
+                                Fara stocare de baxuri si fara transport repetat
+                            </h3>
+                            <p class="mt-2 text-sm leading-relaxed text-muted">
+                                Sursa de apa este permanenta, iar livrarea de
+                                sticle nu mai face parte din rutina zilnica a
+                                locuintei sau biroului.
+                            </p>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <section id="experience" class="py-16 sm:py-20">
+                <div
+                    class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
+                    x-data="{ mode: 0 }"
+                >
+                    <div
+                        class="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between"
+                    >
+                        <div class="max-w-2xl">
+                            <p
+                                class="font-display text-xs font-semibold uppercase tracking-[0.14em] text-cyan-strong"
+                            >
+                                Moduri de servire
+                            </p>
+                            <h2
+                                class="mt-2 font-display text-3xl font-semibold sm:text-4xl"
+                            >
+                                Alege tipul de apa in functie de moment.
+                            </h2>
+                        </div>
+                        <div
+                            class="grid grid-cols-3 gap-2 rounded-2xl border border-ink/10 bg-white p-1"
+                        >
+                            <button
+                                @click="mode = 0"
+                                :class="mode === 0 ? 'bg-deep text-white' : 'text-muted hover:text-ink'"
+                                class="min-h-11 rounded-xl px-3 text-xs font-semibold transition"
+                            >
+                                Rece
+                            </button>
+                            <button
+                                @click="mode = 1"
+                                :class="mode === 1 ? 'bg-deep text-white' : 'text-muted hover:text-ink'"
+                                class="min-h-11 rounded-xl px-3 text-xs font-semibold transition"
+                            >
+                                Fierbinte
+                            </button>
+                            <button
+                                @click="mode = 2"
+                                :class="mode === 2 ? 'bg-deep text-white' : 'text-muted hover:text-ink'"
+                                class="min-h-11 rounded-xl px-3 text-xs font-semibold transition"
+                            >
+                                Carbogazificata
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 grid gap-4 lg:grid-cols-[1fr_1.1fr]">
+                        <div
+                            class="rounded-3xl border border-ink/10 bg-white p-6 sm:p-8"
+                        >
+                            <template x-if="mode === 0">
+                                <div>
+                                    <h3
+                                        class="font-display text-2xl font-semibold"
+                                    >
+                                        Apa plata rece pentru consum rapid
+                                    </h3>
+                                    <p
+                                        class="mt-3 text-sm leading-relaxed text-muted sm:text-base"
+                                    >
+                                        Fluxul de apa rece este potrivit pentru
+                                        hidratarea de zi cu zi si pentru
+                                        activitati in care vrei servire
+                                        imediata, fara racire suplimentara in
+                                        frigider.
+                                    </p>
+                                    <p
+                                        class="mt-4 text-sm font-medium text-ink"
+                                    >
+                                        Disponibila direct din aparat, impreuna
+                                        cu celelalte moduri de servire.
+                                    </p>
+                                </div>
+                            </template>
+                            <template x-if="mode === 1">
+                                <div>
+                                    <h3
+                                        class="font-display text-2xl font-semibold"
+                                    >
+                                        Apa fierbinte pentru ceaiuri si
+                                        preparare rapida
+                                    </h3>
+                                    <p
+                                        class="mt-3 text-sm leading-relaxed text-muted sm:text-base"
+                                    >
+                                        Modul de apa fierbinte este util in
+                                        rutina de dimineata sau in birou, iar
+                                        functia de blocare copii contribuie la
+                                        utilizare mai sigura.
+                                    </p>
+                                    <p
+                                        class="mt-4 text-sm font-medium text-ink"
+                                    >
+                                        Control intuitiv, fara echipamente
+                                        suplimentare pe blat.
+                                    </p>
+                                </div>
+                            </template>
+                            <template x-if="mode === 2">
+                                <div>
+                                    <h3
+                                        class="font-display text-2xl font-semibold"
+                                    >
+                                        Apa carbogazificata cu butelie inclusa
+                                    </h3>
+                                    <p
+                                        class="mt-3 text-sm leading-relaxed text-muted sm:text-base"
+                                    >
+                                        Carbopurity Black include o butelie CO2
+                                        de 5L care poate produce pana la 600L de
+                                        apa carbogazificata, iar schimbul este
+                                        inclus la fiecare 6 luni in abonament.
+                                    </p>
+                                    <p
+                                        class="mt-4 text-sm font-medium text-ink"
+                                    >
+                                        O solutie practica atunci cand vrei
+                                        varianta carbogazificata disponibila
+                                        zilnic.
+                                    </p>
+                                </div>
+                            </template>
+                        </div>
+
+                        <div
+                            class="rounded-3xl border border-ink/10 bg-gradient-to-br from-mist to-white p-6 sm:p-8"
+                        >
+                            <div class="grid h-full gap-4 sm:grid-cols-2">
+                                <article class="rounded-2xl bg-white p-4">
+                                    <p
+                                        class="text-[11px] uppercase tracking-[0.14em] text-muted"
+                                    >
+                                        Capacitate filtru
+                                    </p>
+                                    <p
+                                        class="mt-2 font-display text-3xl font-semibold"
+                                    >
+                                        5.600L
+                                    </p>
+                                    <p class="mt-2 text-sm text-muted">
+                                        Filtrare NSC pana la inlocuirea
+                                        programata.
+                                    </p>
+                                </article>
+                                <article class="rounded-2xl bg-white p-4">
+                                    <p
+                                        class="text-[11px] uppercase tracking-[0.14em] text-muted"
+                                    >
+                                        Capacitate CO2
+                                    </p>
+                                    <p
+                                        class="mt-2 font-display text-3xl font-semibold"
+                                    >
+                                        600L
+                                    </p>
+                                    <p class="mt-2 text-sm text-muted">
+                                        Productie maxima de apa carbogazificata
+                                        per butelie de 5L.
+                                    </p>
+                                </article>
+                                <article
+                                    class="rounded-2xl bg-white p-4 sm:col-span-2"
+                                >
+                                    <p
+                                        class="text-[11px] uppercase tracking-[0.14em] text-muted"
+                                    >
+                                        Protectie suplimentara
+                                    </p>
+                                    <p
+                                        class="mt-2 text-sm leading-relaxed text-muted"
+                                    >
+                                        Sterilizarea UV actioneaza in zona
+                                        robinetului, iar sistemul waterblock
+                                        ofera protectie la scurgeri accidentale.
+                                    </p>
+                                </article>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="filtration" class="bg-white py-16 sm:py-20">
+                <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                    <div
+                        class="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between"
+                    >
+                        <div class="max-w-2xl">
+                            <p
+                                class="font-display text-xs font-semibold uppercase tracking-[0.14em] text-cyan-strong"
+                            >
+                                Flux de filtrare
+                            </p>
+                            <h2
+                                class="mt-2 font-display text-3xl font-semibold sm:text-4xl"
+                            >
+                                Cum ajunge apa de la retea la pahar.
+                            </h2>
+                        </div>
+                        <p class="text-sm text-muted">
+                            Proces in 4 etape, gandit pentru utilizare
+                            constanta.
+                        </p>
+                    </div>
+
+                    <div class="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+                        <article
+                            class="rounded-3xl border border-line bg-paper p-5"
+                        >
+                            <p
+                                class="mb-3 inline-flex h-9 w-9 items-center justify-center rounded-full bg-deep text-sm font-semibold text-white"
+                            >
+                                1
+                            </p>
+                            <h3 class="text-lg font-semibold">
+                                Racordare la retea
+                            </h3>
+                            <p class="mt-2 text-sm leading-relaxed text-muted">
+                                Aparatul se conecteaza la reteaua de apa
+                                potabila din locatie.
+                            </p>
+                        </article>
+                        <article
+                            class="rounded-3xl border border-line bg-paper p-5"
+                        >
+                            <p
+                                class="mb-3 inline-flex h-9 w-9 items-center justify-center rounded-full bg-deep text-sm font-semibold text-white"
+                            >
+                                2
+                            </p>
+                            <h3 class="text-lg font-semibold">Filtrare NSC</h3>
+                            <p class="mt-2 text-sm leading-relaxed text-muted">
+                                Carbonul activ si tesatura cu nano-argint reduc
+                                clorul, compusii organici volatili si metalele
+                                grele.
+                            </p>
+                        </article>
+                        <article
+                            class="rounded-3xl border border-line bg-paper p-5"
+                        >
+                            <p
+                                class="mb-3 inline-flex h-9 w-9 items-center justify-center rounded-full bg-deep text-sm font-semibold text-white"
+                            >
+                                3
+                            </p>
+                            <h3 class="text-lg font-semibold">
+                                Sterilizare UV
+                            </h3>
+                            <p class="mt-2 text-sm leading-relaxed text-muted">
+                                Zona robinetului este protejata microbiologic
+                                prin lampa UV integrata.
+                            </p>
+                        </article>
+                        <article
+                            class="rounded-3xl border border-line bg-paper p-5"
+                        >
+                            <p
+                                class="mb-3 inline-flex h-9 w-9 items-center justify-center rounded-full bg-deep text-sm font-semibold text-white"
+                            >
+                                4
+                            </p>
+                            <h3 class="text-lg font-semibold">
+                                Servire directa
+                            </h3>
+                            <p class="mt-2 text-sm leading-relaxed text-muted">
+                                Alegi instant apa rece, fierbinte sau
+                                carbogazificata dupa preferinta.
+                            </p>
+                        </article>
+                    </div>
+
+                    <div
+                        class="mt-6 rounded-3xl border border-cyan/30 bg-cyan-soft/60 p-5 sm:p-6"
+                    >
+                        <p class="text-sm leading-relaxed text-ink">
+                            Procesul de filtrare nu modifica duritatea apei,
+                            astfel ca apa isi pastreaza continutul natural de
+                            minerale.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section
+                id="specs"
+                class="py-16 sm:py-20"
+                x-data="{ openSpecs: false }"
+            >
+                <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+                    <h2 class="font-display text-3xl font-semibold sm:text-4xl">
+                        Specificatii tehnice esentiale
+                    </h2>
+
+                    <div
+                        class="mt-8 overflow-hidden rounded-3xl border border-ink/10 bg-white"
+                    >
+                        <dl class="divide-y divide-ink/10">
+                            <div
+                                class="grid grid-cols-[1fr_auto] gap-4 px-5 py-4 sm:px-6"
+                            >
+                                <dt
+                                    class="text-xs font-semibold uppercase tracking-[0.12em] text-muted"
+                                >
+                                    Dimensiuni aparat
+                                </dt>
+                                <dd class="text-sm font-semibold text-right">
+                                    23 x 44 x 40 cm
+                                </dd>
+                            </div>
+                            <div
+                                class="grid grid-cols-[1fr_auto] gap-4 px-5 py-4 sm:px-6"
+                            >
+                                <dt
+                                    class="text-xs font-semibold uppercase tracking-[0.12em] text-muted"
+                                >
+                                    Tipuri de apa
+                                </dt>
+                                <dd class="text-sm font-semibold text-right">
+                                    Plata rece, fierbinte, carbogazificata
+                                </dd>
+                            </div>
+                            <div
+                                class="grid grid-cols-[1fr_auto] gap-4 px-5 py-4 sm:px-6"
+                            >
+                                <dt
+                                    class="text-xs font-semibold uppercase tracking-[0.12em] text-muted"
+                                >
+                                    Capacitate filtru
+                                </dt>
+                                <dd class="text-sm font-semibold text-right">
+                                    Pana la 5.600 litri
+                                </dd>
+                            </div>
+                            <div
+                                class="grid grid-cols-[1fr_auto] gap-4 px-5 py-4 sm:px-6"
+                            >
+                                <dt
+                                    class="text-xs font-semibold uppercase tracking-[0.12em] text-muted"
+                                >
+                                    Sterilizare
+                                </dt>
+                                <dd class="text-sm font-semibold text-right">
+                                    Lampa UV la robinet
+                                </dd>
+                            </div>
+                            <div
+                                class="grid grid-cols-[1fr_auto] gap-4 px-5 py-4 sm:px-6"
+                            >
+                                <dt
+                                    class="text-xs font-semibold uppercase tracking-[0.12em] text-muted"
+                                >
+                                    Butelie CO2
+                                </dt>
+                                <dd class="text-sm font-semibold text-right">
+                                    5L, pana la 600L apa carbogazificata
+                                </dd>
+                            </div>
+
+                            <template x-if="openSpecs">
+                                <div>
+                                    <div
+                                        class="grid grid-cols-[1fr_auto] gap-4 border-t border-ink/10 px-5 py-4 sm:px-6"
+                                    >
+                                        <dt
+                                            class="text-xs font-semibold uppercase tracking-[0.12em] text-muted"
+                                        >
+                                            Dimensiuni butelie CO2
+                                        </dt>
+                                        <dd
+                                            class="text-sm font-semibold text-right"
+                                        >
+                                            Diametru 14 cm, inaltime 55 cm
+                                        </dd>
+                                    </div>
+                                    <div
+                                        class="grid grid-cols-[1fr_auto] gap-4 border-t border-ink/10 px-5 py-4 sm:px-6"
+                                    >
+                                        <dt
+                                            class="text-xs font-semibold uppercase tracking-[0.12em] text-muted"
+                                        >
+                                            Presiune minima apa
+                                        </dt>
+                                        <dd
+                                            class="text-sm font-semibold text-right"
+                                        >
+                                            2 bari
+                                        </dd>
+                                    </div>
+                                    <div
+                                        class="grid grid-cols-[1fr_auto] gap-4 border-t border-ink/10 px-5 py-4 sm:px-6"
+                                    >
+                                        <dt
+                                            class="text-xs font-semibold uppercase tracking-[0.12em] text-muted"
+                                        >
+                                            Protectii integrate
+                                        </dt>
+                                        <dd
+                                            class="text-sm font-semibold text-right"
+                                        >
+                                            Waterblock + blocare copii
+                                        </dd>
+                                    </div>
+                                    <div
+                                        class="grid grid-cols-[1fr_auto] gap-4 border-t border-ink/10 px-5 py-4 sm:px-6"
+                                    >
+                                        <dt
+                                            class="text-xs font-semibold uppercase tracking-[0.12em] text-muted"
+                                        >
+                                            Racordare
+                                        </dt>
+                                        <dd
+                                            class="text-sm font-semibold text-right"
+                                        >
+                                            Retea de apa potabila
+                                        </dd>
+                                    </div>
+                                </div>
+                            </template>
+                        </dl>
+
+                        <button
+                            @click="openSpecs = !openSpecs"
+                            class="inline-flex min-h-12 w-full items-center justify-center gap-2 border-t border-ink/10 px-5 text-sm font-semibold text-cyan-strong transition hover:text-cyan focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan"
+                        >
+                            <span
+                                x-text="openSpecs ? 'Ascunde detaliile suplimentare' : 'Afiseaza detalii suplimentare'"
+                            ></span>
+                            <svg
+                                :class="openSpecs ? 'rotate-180' : ''"
+                                class="h-4 w-4 transition"
+                                viewBox="0 0 20 20"
+                                fill="none"
+                                stroke="currentColor"
+                            >
+                                <path
+                                    d="M5 7.5l5 5 5-5"
+                                    stroke-width="1.8"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                />
+                            </svg>
+                        </button>
+                    </div>
+
+                    <figure
+                        class="mt-6 rounded-3xl border border-ink/10 bg-white p-4 sm:p-5"
+                    >
+                        <img
+                            src="assets/images/specs/co2-bottle-dimensions.png"
+                            alt="Dimensiunile buteliei CO2: diametru 14 cm si inaltime 55 cm"
+                            width="120"
+                            height="120"
+                            class="mx-auto h-24 w-24 object-contain"
+                            loading="lazy"
+                            decoding="async"
+                        />
+                    </figure>
+                </div>
+            </section>
+
+            <section id="service" class="bg-deep py-16 text-white sm:py-20">
+                <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                    <div class="max-w-2xl">
+                        <p
+                            class="font-display text-xs font-semibold uppercase tracking-[0.14em] text-cyan"
+                        >
+                            Service inclus
+                        </p>
+                        <h2
+                            class="mt-2 font-display text-3xl font-semibold sm:text-4xl"
+                        >
+                            Instalare si mentenanta gestionate de echipa La
+                            Fantana.
+                        </h2>
+                        <p
+                            class="mt-4 text-sm leading-relaxed text-white/75 sm:text-base"
+                        >
+                            Produsul functioneaza in regim de abonament, iar
+                            operatiunile tehnice sunt facute de specialisti
+                            autorizati.
+                        </p>
+                    </div>
+
+                    <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                        <article
+                            class="rounded-3xl border border-white/15 bg-white/5 p-5"
+                        >
+                            <img
+                                src="assets/images/icons/icon-installation.png"
+                                alt=""
+                                width="40"
+                                height="40"
+                                class="h-8 w-8"
+                                loading="lazy"
+                                decoding="async"
+                            />
+                            <h3 class="mt-4 text-lg font-semibold">
+                                Instalare profesionala
+                            </h3>
+                            <p
+                                class="mt-2 text-sm leading-relaxed text-white/75"
+                            >
+                                Montaj la locatie in 5-7 zile lucratoare de la
+                                confirmarea comenzii.
+                            </p>
+                        </article>
+                        <article
+                            class="rounded-3xl border border-white/15 bg-white/5 p-5"
+                        >
+                            <img
+                                src="assets/images/icons/icon-subscription.png"
+                                alt=""
+                                width="40"
+                                height="40"
+                                class="h-8 w-8"
+                                loading="lazy"
+                                decoding="async"
+                            />
+                            <h3 class="mt-4 text-lg font-semibold">
+                                Abonament lunar
+                            </h3>
+                            <p
+                                class="mt-2 text-sm leading-relaxed text-white/75"
+                            >
+                                Plata recurenta pe card, cu servicii incluse pe
+                                durata utilizarii.
+                            </p>
+                        </article>
+                        <article
+                            class="rounded-3xl border border-white/15 bg-white/5 p-5"
+                        >
+                            <img
+                                src="assets/images/icons/icon-technician.png"
+                                alt=""
+                                width="40"
+                                height="40"
+                                class="h-8 w-8"
+                                loading="lazy"
+                                decoding="async"
+                            />
+                            <h3 class="mt-4 text-lg font-semibold">
+                                Filtru + igienizare
+                            </h3>
+                            <p
+                                class="mt-2 text-sm leading-relaxed text-white/75"
+                            >
+                                Filtrul NSC este inlocuit gratuit la 12 luni,
+                                iar echipamentul este igienizat periodic.
+                            </p>
+                        </article>
+                        <article
+                            class="rounded-3xl border border-white/15 bg-white/5 p-5"
+                        >
+                            <svg
+                                class="h-8 w-8 text-cyan"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="1.6"
+                            >
+                                <path
+                                    d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                />
+                            </svg>
+                            <h3 class="mt-4 text-lg font-semibold">
+                                Schimb butelie CO2
+                            </h3>
+                            <p
+                                class="mt-2 text-sm leading-relaxed text-white/75"
+                            >
+                                Butelia CO2 este schimbata gratuit la fiecare 6
+                                luni in cadrul abonamentului.
+                            </p>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <section id="gallery" class="py-16 sm:py-20" x-data="gallery()">
+                <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                    <div class="flex items-end justify-between gap-3">
+                        <div>
+                            <p
+                                class="font-display text-xs font-semibold uppercase tracking-[0.14em] text-cyan-strong"
+                            >
+                                Tur vizual
+                            </p>
+                            <h2
+                                class="mt-2 font-display text-3xl font-semibold sm:text-4xl"
+                            >
+                                Detalii de design si integrare in spatiu.
+                            </h2>
+                        </div>
+                        <p class="text-sm text-muted" aria-hidden="true">
+                            <span x-text="(current + 1)"></span> /
+                            <span x-text="images.length"></span>
+                        </p>
+                    </div>
+
+                    <div class="mt-8 grid gap-4 lg:grid-cols-[1fr_220px]">
+                        <div
+                            class="relative overflow-hidden rounded-3xl border border-ink/10 bg-white"
+                            @touchstart.passive="touchStartX = $event.changedTouches[0].screenX"
+                            @touchend="handleSwipe($event)"
+                        >
+                            <template
+                                x-for="(img, index) in images"
+                                :key="index"
+                            >
+                                <img
+                                    :src="img.src"
+                                    :alt="img.alt"
+                                    :class="index === current ? 'opacity-100 scale-100' : 'opacity-0 scale-105'"
+                                    class="absolute inset-0 h-full w-full object-contain p-4 transition duration-500 cursor-zoom-in"
+                                    loading="lazy"
+                                    decoding="async"
+                                    @click="openLightbox()"
+                                />
+                            </template>
+
+                            <div
+                                class="pointer-events-none aspect-square w-full"
+                            ></div>
+
+                            <button
+                                @click="prev()"
+                                class="absolute left-3 top-1/2 hidden min-h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-deep/85 text-white transition hover:bg-deep sm:inline-flex"
+                                aria-label="Imaginea anterioara"
+                            >
+                                <svg
+                                    class="h-5 w-5"
+                                    viewBox="0 0 20 20"
+                                    fill="none"
+                                    stroke="currentColor"
+                                >
+                                    <path
+                                        d="M12.5 4.5L7 10l5.5 5.5"
+                                        stroke-width="1.8"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    />
+                                </svg>
+                            </button>
+                            <button
+                                @click="next()"
+                                class="absolute right-3 top-1/2 hidden min-h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-deep/85 text-white transition hover:bg-deep sm:inline-flex"
+                                aria-label="Imaginea urmatoare"
+                            >
+                                <svg
+                                    class="h-5 w-5"
+                                    viewBox="0 0 20 20"
+                                    fill="none"
+                                    stroke="currentColor"
+                                >
+                                    <path
+                                        d="M7.5 4.5L13 10l-5.5 5.5"
+                                        stroke-width="1.8"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    />
+                                </svg>
+                            </button>
+                        </div>
+
+                        <div
+                            class="flex gap-2 overflow-x-auto pb-1 lg:grid lg:grid-cols-1 lg:overflow-visible"
+                        >
+                            <template
+                                x-for="(img, index) in images"
+                                :key="'thumb-' + index"
+                            >
+                                <button
+                                    @click="current = index"
+                                    :class="current === index ? 'border-cyan shadow-[0_0_0_2px_rgba(0,183,217,0.2)]' : 'border-ink/10'"
+                                    class="flex h-20 min-w-20 items-center justify-center overflow-hidden rounded-2xl border bg-white transition lg:h-24 lg:w-full"
+                                    :aria-label="'Vezi: ' + img.alt"
+                                >
+                                    <img
+                                        :src="img.thumb"
+                                        :alt="img.alt"
+                                        class="h-full w-full object-cover"
+                                        loading="lazy"
+                                        decoding="async"
+                                    />
+                                </button>
+                            </template>
+                        </div>
+                    </div>
+
+                    <div
+                        class="mt-4 rounded-3xl border border-ink/10 bg-white p-4 sm:p-5"
+                    >
+                        <div
+                            class="aspect-video overflow-hidden rounded-2xl bg-ink/5"
+                            x-data="{ play: false }"
+                        >
+                            <template x-if="!play">
+                                <button
+                                    @click="play = true"
+                                    class="group relative h-full w-full"
+                                >
+                                    <img
+                                        src="assets/images/gallery/video-thumb.jpg"
+                                        alt="Video prezentare Carbopurity Black"
+                                        class="h-full w-full object-cover"
+                                        loading="lazy"
+                                        decoding="async"
+                                    />
+                                    <span
+                                        class="absolute inset-0 flex items-center justify-center bg-deep/25"
+                                    >
+                                        <span
+                                            class="inline-flex h-14 w-14 items-center justify-center rounded-full bg-white text-deep transition group-hover:scale-105"
+                                        >
+                                            <svg
+                                                class="ml-0.5 h-6 w-6"
+                                                viewBox="0 0 24 24"
+                                                fill="currentColor"
+                                            >
+                                                <path d="M8 5v14l11-7z" />
+                                            </svg>
+                                        </span>
+                                    </span>
+                                </button>
+                            </template>
+                            <template x-if="play">
+                                <iframe
+                                    src="https://www.youtube.com/embed/xZza2UV6d78?autoplay=1"
+                                    title="Video prezentare Carbopurity Black"
+                                    class="h-full w-full"
+                                    allow="
+                                        accelerometer;
+                                        autoplay;
+                                        clipboard-write;
+                                        encrypted-media;
+                                        gyroscope;
+                                        picture-in-picture;
+                                    "
+                                    allowfullscreen
+                                ></iframe>
+                            </template>
+                        </div>
+                    </div>
+
+                    <div
+                        x-show="lightboxOpen"
+                        x-transition.opacity
+                        @click.self="closeLightbox()"
+                        @keydown.escape.window="closeLightbox()"
+                        class="fixed inset-0 z-[80] bg-black/90 p-4"
+                        role="dialog"
+                        aria-modal="true"
+                        aria-label="Galerie imagini produs"
+                        style="display: none"
+                    >
+                        <button
+                            @click="closeLightbox()"
+                            class="absolute right-4 top-4 inline-flex min-h-11 w-11 items-center justify-center rounded-full bg-white/15 text-white transition hover:bg-white/25"
+                            aria-label="Inchide galeria"
+                        >
+                            <svg
+                                class="h-5 w-5"
+                                viewBox="0 0 20 20"
+                                fill="none"
+                                stroke="currentColor"
+                            >
+                                <path
+                                    d="M5 5l10 10M15 5L5 15"
+                                    stroke-width="1.8"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                />
+                            </svg>
+                        </button>
+
+                        <button
+                            @click="prev()"
+                            class="absolute left-3 top-1/2 inline-flex min-h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/15 text-white transition hover:bg-white/25"
+                            aria-label="Imaginea anterioara"
+                        >
+                            <svg
+                                class="h-5 w-5"
+                                viewBox="0 0 20 20"
+                                fill="none"
+                                stroke="currentColor"
+                            >
+                                <path
+                                    d="M12.5 4.5L7 10l5.5 5.5"
+                                    stroke-width="1.8"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                />
+                            </svg>
+                        </button>
+
+                        <button
+                            @click="next()"
+                            class="absolute right-3 top-1/2 inline-flex min-h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/15 text-white transition hover:bg-white/25"
+                            aria-label="Imaginea urmatoare"
+                        >
+                            <svg
+                                class="h-5 w-5"
+                                viewBox="0 0 20 20"
+                                fill="none"
+                                stroke="currentColor"
+                            >
+                                <path
+                                    d="M7.5 4.5L13 10l-5.5 5.5"
+                                    stroke-width="1.8"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                />
+                            </svg>
+                        </button>
+
+                        <div class="flex h-full items-center justify-center">
+                            <img
+                                :src="images[current].src"
+                                :alt="images[current].alt"
+                                class="max-h-[88vh] max-w-[92vw] object-contain"
+                                @touchstart.passive="touchStartX = $event.changedTouches[0].screenX"
+                                @touchend="handleSwipe($event)"
+                            />
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="faq" class="bg-white py-16 sm:py-20">
+                <div
+                    class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8"
+                    x-data="{ openItem: 0 }"
+                >
+                    <h2 class="font-display text-3xl font-semibold sm:text-4xl">
+                        Intrebari frecvente
+                    </h2>
+
+                    <div
+                        class="mt-8 overflow-hidden rounded-3xl border border-ink/10 bg-paper divide-y divide-ink/10"
+                    >
+                        <div>
+                            <button
+                                @click="openItem = openItem === 0 ? null : 0"
+                                :aria-expanded="openItem === 0"
+                                aria-controls="faq-a"
+                                class="flex min-h-14 w-full items-center justify-between gap-4 px-5 py-4 text-left text-sm font-semibold sm:px-6 sm:text-base"
+                            >
+                                Ce tipuri de apa ofera Carbopurity Black?
+                                <svg
+                                    :class="openItem === 0 ? 'rotate-180' : ''"
+                                    class="h-5 w-5 shrink-0 text-cyan-strong transition"
+                                    viewBox="0 0 20 20"
+                                    fill="none"
+                                    stroke="currentColor"
+                                >
+                                    <path
+                                        d="M5 7.5l5 5 5-5"
+                                        stroke-width="1.8"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    />
+                                </svg>
+                            </button>
+                            <div
+                                x-show="openItem === 0"
+                                x-collapse
+                                id="faq-a"
+                                role="region"
+                            >
+                                <p
+                                    class="px-5 pb-5 text-sm leading-relaxed text-muted sm:px-6"
+                                >
+                                    Aparatul livreaza apa plata rece, apa
+                                    fierbinte si apa carbogazificata, toate din
+                                    acelasi punct de servire.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div>
+                            <button
+                                @click="openItem = openItem === 1 ? null : 1"
+                                :aria-expanded="openItem === 1"
+                                aria-controls="faq-b"
+                                class="flex min-h-14 w-full items-center justify-between gap-4 px-5 py-4 text-left text-sm font-semibold sm:px-6 sm:text-base"
+                            >
+                                Cum functioneaza filtrarea si ce se pastreaza
+                                din apa?
+                                <svg
+                                    :class="openItem === 1 ? 'rotate-180' : ''"
+                                    class="h-5 w-5 shrink-0 text-cyan-strong transition"
+                                    viewBox="0 0 20 20"
+                                    fill="none"
+                                    stroke="currentColor"
+                                >
+                                    <path
+                                        d="M5 7.5l5 5 5-5"
+                                        stroke-width="1.8"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    />
+                                </svg>
+                            </button>
+                            <div
+                                x-show="openItem === 1"
+                                x-collapse
+                                id="faq-b"
+                                role="region"
+                            >
+                                <p
+                                    class="px-5 pb-5 text-sm leading-relaxed text-muted sm:px-6"
+                                >
+                                    Filtrul NSC combina carbon activ si
+                                    nano-argint pentru a reduce clorul si
+                                    impuritatile frecvente, iar duritatea apei
+                                    ramane nemodificata, astfel ca mineralele se
+                                    pastreaza.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div>
+                            <button
+                                @click="openItem = openItem === 2 ? null : 2"
+                                :aria-expanded="openItem === 2"
+                                aria-controls="faq-c"
+                                class="flex min-h-14 w-full items-center justify-between gap-4 px-5 py-4 text-left text-sm font-semibold sm:px-6 sm:text-base"
+                            >
+                                Ce include abonamentul de service?
+                                <svg
+                                    :class="openItem === 2 ? 'rotate-180' : ''"
+                                    class="h-5 w-5 shrink-0 text-cyan-strong transition"
+                                    viewBox="0 0 20 20"
+                                    fill="none"
+                                    stroke="currentColor"
+                                >
+                                    <path
+                                        d="M5 7.5l5 5 5-5"
+                                        stroke-width="1.8"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    />
+                                </svg>
+                            </button>
+                            <div
+                                x-show="openItem === 2"
+                                x-collapse
+                                id="faq-c"
+                                role="region"
+                            >
+                                <p
+                                    class="px-5 pb-5 text-sm leading-relaxed text-muted sm:px-6"
+                                >
+                                    Instalarea, inlocuirea filtrului la 12 luni,
+                                    igienizarea periodica si schimbul buteliei
+                                    CO2 la 6 luni sunt operate de echipa tehnica
+                                    La Fantana.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div>
+                            <button
+                                @click="openItem = openItem === 3 ? null : 3"
+                                :aria-expanded="openItem === 3"
+                                aria-controls="faq-d"
+                                class="flex min-h-14 w-full items-center justify-between gap-4 px-5 py-4 text-left text-sm font-semibold sm:px-6 sm:text-base"
+                            >
+                                Ce conditii tehnice sunt necesare pentru
+                                instalare?
+                                <svg
+                                    :class="openItem === 3 ? 'rotate-180' : ''"
+                                    class="h-5 w-5 shrink-0 text-cyan-strong transition"
+                                    viewBox="0 0 20 20"
+                                    fill="none"
+                                    stroke="currentColor"
+                                >
+                                    <path
+                                        d="M5 7.5l5 5 5-5"
+                                        stroke-width="1.8"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    />
+                                </svg>
+                            </button>
+                            <div
+                                x-show="openItem === 3"
+                                x-collapse
+                                id="faq-d"
+                                role="region"
+                            >
+                                <p
+                                    class="px-5 pb-5 text-sm leading-relaxed text-muted sm:px-6"
+                                >
+                                    Sistemul se racordeaza la reteaua de apa
+                                    potabila, iar pentru functionare corecta
+                                    este necesara o presiune minima de 2 bari.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section
+                id="contact"
+                class="relative overflow-hidden py-20 sm:py-24"
+            >
+                <div class="pointer-events-none absolute inset-0">
+                    <div
+                        class="absolute -left-16 bottom-0 h-64 w-64 rounded-full bg-cyan/20 blur-3xl"
+                    ></div>
+                    <div
+                        class="absolute right-0 top-0 h-72 w-72 rounded-full bg-lime/20 blur-3xl"
+                    ></div>
+                </div>
+
+                <div class="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+                    <div
+                        class="rounded-[2rem] border border-ink/10 bg-white p-7 soft-shadow sm:p-10"
+                    >
+                        <h2
+                            class="font-display text-3xl font-semibold sm:text-4xl"
+                        >
+                            Vrei detalii personalizate pentru locatia ta?
+                        </h2>
+                        <p
+                            class="mt-4 max-w-2xl text-sm leading-relaxed text-muted sm:text-base"
+                        >
+                            Echipa La Fantana poate explica in detaliu
+                            conditiile de instalare, fluxul de mentenanta si
+                            scenariile de utilizare pentru acasa sau birou.
+                        </p>
+
+                        <div class="mt-6 flex flex-col gap-3 sm:flex-row">
+                            <a
+                                href="https://lafantana.ro/ro/watercooler-cu-filtre-apa-carbopurity-black.html"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="inline-flex min-h-12 items-center justify-center rounded-full bg-deep px-6 text-sm font-semibold text-white transition hover:bg-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan"
+                            >
+                                Pagina oficiala produs
+                            </a>
+                            <a
+                                href="tel:0212007200"
+                                class="inline-flex min-h-12 items-center justify-center rounded-full border border-ink/15 bg-white px-6 text-sm font-semibold text-ink transition hover:border-cyan hover:text-cyan focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan"
+                            >
+                                021 200 72 00
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="border-t border-ink/10 bg-white py-8">
+            <div
+                class="mx-auto flex max-w-7xl flex-col gap-2 px-4 text-sm text-muted sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8"
+            >
+                <p>&copy; La Fantana. Pagina de prezentare produs.</p>
+                <p>Informatiile oficiale se gasesc pe lafantana.ro.</p>
+            </div>
+        </footer>
+
+        <script>
+            function minisite() {
+                return {
+                    isScrolled: false,
+                    activeSection: "hero",
+                    sections: [
+                        { id: "hero", label: "Acasa" },
+                        { id: "overview", label: "Prezentare" },
+                        { id: "experience", label: "Experienta" },
+                        { id: "filtration", label: "Filtrare" },
+                        { id: "specs", label: "Specificatii" },
+                        { id: "service", label: "Mentenanta" },
+                        { id: "gallery", label: "Galerie" },
+                        { id: "faq", label: "FAQ" },
+                        { id: "contact", label: "Contact" },
+                    ],
+                    init() {
+                        const onScroll = () => {
+                            this.isScrolled = window.scrollY > 40;
+                        };
+
+                        onScroll();
+                        window.addEventListener("scroll", onScroll, {
+                            passive: true,
+                        });
+
+                        const observer = new IntersectionObserver(
+                            (entries) => {
+                                entries.forEach((entry) => {
+                                    if (entry.isIntersecting) {
+                                        this.activeSection = entry.target.id;
+                                    }
+                                });
+                            },
+                            { rootMargin: "-25% 0px -60% 0px", threshold: 0 },
+                        );
+
+                        this.sections.forEach((section) => {
+                            const element = document.getElementById(section.id);
+                            if (element) observer.observe(element);
+                        });
+                    },
+                    scrollTo(id) {
+                        const element = document.getElementById(id);
+                        if (!element) return;
+                        const offset = 108;
+                        const top =
+                            element.getBoundingClientRect().top +
+                            window.pageYOffset -
+                            offset;
+                        window.scrollTo({ top, behavior: "smooth" });
+                    },
+                };
+            }
+
+            function gallery() {
+                return {
+                    current: 0,
+                    touchStartX: 0,
+                    lightboxOpen: false,
+                    images: [
+                        {
+                            src: "assets/images/hero/carbopurity-black-main.png",
+                            thumb: "assets/images/gallery/carbopurity-black-main-thumb.png",
+                            alt: "Carbopurity Black - vedere frontala",
+                        },
+                        {
+                            src: "assets/images/gallery/carbopurity-black-angle.jpg",
+                            thumb: "assets/images/gallery/carbopurity-black-angle-thumb.jpg",
+                            alt: "Carbopurity Black - vedere laterala",
+                        },
+                        {
+                            src: "assets/images/gallery/carbopurity-black-detail.jpg",
+                            thumb: "assets/images/gallery/carbopurity-black-detail-thumb.jpg",
+                            alt: "Carbopurity Black - detaliu produs",
+                        },
+                        {
+                            src: "assets/images/gallery/carbopurity-black-context.jpg",
+                            thumb: "assets/images/gallery/carbopurity-black-context-thumb.jpg",
+                            alt: "Carbopurity Black - integrare in spatiu",
+                        },
+                        {
+                            src: "assets/images/gallery/carbopurity-black-round.jpg",
+                            thumb: "assets/images/gallery/carbopurity-black-round.jpg",
+                            alt: "Carbopurity Black - vedere de ansamblu",
+                        },
+                    ],
+                    next() {
+                        this.current = (this.current + 1) % this.images.length;
+                    },
+                    prev() {
+                        this.current =
+                            (this.current - 1 + this.images.length) %
+                            this.images.length;
+                    },
+                    handleSwipe(event) {
+                        const diff =
+                            this.touchStartX - event.changedTouches[0].screenX;
+                        if (Math.abs(diff) > 50) {
+                            if (diff > 0) this.next();
+                            else this.prev();
+                        }
+                    },
+                    openLightbox() {
+                        this.lightboxOpen = true;
+                        document.body.style.overflow = "hidden";
+                    },
+                    closeLightbox() {
+                        this.lightboxOpen = false;
+                        document.body.style.overflow = "";
+                    },
+                };
+            }
+        </script>
+    </body>
+</html>
